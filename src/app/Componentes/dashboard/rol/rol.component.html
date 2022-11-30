@@ -1,0 +1,203 @@
+<div class="container-fluid text-black mt-5 text-center">
+    <h1>Roles</h1>
+</div>
+
+<div class="container">
+    <div class="d-flex mt-3 mx-3 justify-content-end">
+        <button type="button" class="btn btn-color" style="background: #00DA9D; color: white; border-radius: 20px; width:
+     125px"
+                data-bs-toggle="modal"
+                data-bs-target="#AddRol" (click)="cleanModal()">AGREGAR
+        </button>
+    </div>
+    <table class="table mt-3 table-hover table-striped">
+        <thead style="background: #195E4B; color: white">
+        <tr>
+            <th scope="col" class="text-center">Nombre</th>
+            <th scope="col" class="text-center">Descripcion</th>
+            <th scope="col" class="text-center">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let roles of rol">
+            <td class="text-center">{{roles.rolnombre}}</td>
+            <td class="text-center">{{roles.descripcion}}</td>
+            <td class="text-center">
+                <div class="btn-group ">
+                    <button class="btn btn-color dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="background: #5CCB4A; color: white;">
+                        Opciones
+                    </button>
+                    <ul class="dropdown-menu btn-color" style="border: none; background: none">
+                        <button class="btn-color dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#UpdateRol" (click)="abrirmodaleditar(roles)"
+                                style="background: #00DA9D; color: white;">Editar
+                        </button>
+                        <button class="btn-color dropdown-item " (click)="delete(roles)"
+                                style="background: #F33501; color: white;">Eliminar
+                        </button>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal Agregar -->
+<div class="modal fade" id="AddRol" tabindex="-1" aria-labelledby="AddRol" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+            <div class="modal-header align-items-center" style="background: #195E4B; color: white">
+                <h1 class="modal-title fs-3 ">REGISTRO ROL</h1>
+                <button type="button" class="btn-close bg-light text-bg-light" id="closeM1" data-bs-dismiss="modal"
+                        aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-control" #rolAgregar="ngForm" style="border: none">
+                    <div class="mb-3">
+                        <label for="rol" class="form-label">ROL:</label>
+                        <input type="text" class="form-control"
+                               style="background: #D9D9D9;border-radius: 0px;"
+                               id="rol" [(ngModel)]="roles.rolnombre" name="rol"
+                               required minlength="3" maxlength="20" #rolname="ngModel">
+                        <div class="alert alert-danger"
+                             *ngIf="rolname.invalid && (rolname.dirty || rolname.touched)">
+                            <div *ngIf="rolname?.errors?.['required']">
+                                Digite el nombre del rol
+                            </div>
+                            <div *ngIf="rolname?.errors?.['minlength']">
+                                El nombre debe tener mínimo 3 caracteres
+                            </div>
+                            <div *ngIf="rolname?.errors?.['maxlength']">
+                                El nombre debe tener máximo 20 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">DESCRIPCION:</label>
+                        <input type="text" class="form-control"
+                               style="background: #D9D9D9; border-radius: 0px;height: 100px"
+                               id="descripcion" [(ngModel)]="roles.descripcion" name="descripcion"
+                               required minlength="25" maxlength="100" #rolndesc="ngModel">
+                        <div class="alert alert-danger"
+                             *ngIf="rolndesc.invalid && (rolndesc.dirty || rolndesc.touched)">
+                            <div *ngIf="rolndesc?.errors?.['required']">
+                                Digite la descripcion del rol
+                            </div>
+                            <div *ngIf="rolndesc?.errors?.['minlength']">
+                                La descripcion debe tener mínimo 25 caracteres
+                            </div>
+                            <div *ngIf="rolndesc?.errors?.['maxlength']">
+                                La descripcion debe tener máximo 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row justify-content-center">
+                            <div class="col-4">
+                                <button type="button" class="btn btn-color"
+                                        style="background: #00DA9D; color: white; border: none"
+                                        (click)="agregarRol()"
+                                        [disabled]="!rolAgregar.form.valid">Agregar
+                                    Rol
+                                </button>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-color" style="background: #F33501; color: white;
+                             border: none"
+                                        data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Actualizar -->
+<div class="modal fade" id="UpdateRol" tabindex="-1" aria-labelledby="UpdateRol" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+            <div class="modal-header align-items-center" style="background: #195E4B; color: white">
+                <h1 class="modal-title fs-3">EDITAR ROL</h1>
+                <button type="button" class="btn-close bg-light text-bg-light" data-bs-dismiss="modal"
+                        aria-label="Close"
+                        id="closeM2"
+                ></button>
+            </div>
+
+            <div class="modal-body">
+
+                <form class="form-control" #rolEditar="ngForm" style="border: none">
+                    <div class="mb-3">
+                        <label for="rol" class="form-label">ROL:</label>
+                        <input type="text" class="form-control"
+                               style="background: #D9D9D9;border-radius: 0px;"
+                               required required minlength="10" maxlength="100" #rolnameedit="ngModel"
+                               id="rolS" [(ngModel)]="roles.rolnombre" name="rol">
+                        <div class="alert alert-danger"
+                             *ngIf="rolnameedit.invalid && (rolnameedit.dirty || rolnameedit.touched)">
+                            <div *ngIf="rolnameedit?.errors?.['required']">
+                                Digite el nombre del rol
+                            </div>
+                            <div *ngIf="rolnameedit?.errors?.['minlength']">
+                                El nombre debe tener mínimo 3 caracteres
+                            </div>
+                            <div *ngIf="rolnameedit?.errors?.['maxlength']">
+                                El nombre debe tener máximo 20 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">DESCRIPCION:</label>
+                        <input type="text" class="form-control"
+                               style="background: #D9D9D9; border-radius: 0px;height: 100px"
+                               id="descripcions" [(ngModel)]="roles.descripcion" name="descripcions"
+                               required minlength="25" maxlength="100" #rolndescedit="ngModel">
+                        <div class="alert alert-danger"
+                             *ngIf="rolndescedit.invalid && (rolndescedit.dirty || rolndescedit.touched)">
+                            <div *ngIf="rolndescedit?.errors?.['required']">
+                                Digite la descripcion del rol
+                            </div>
+                            <div *ngIf="rolndescedit?.errors?.['minlength']">
+                                La descripcion debe tener mínimo 25 caracteres
+                            </div>
+                            <div *ngIf="rolndescedit?.errors?.['maxlength']">
+                                La descripcion debe tener máximo 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-center">
+                        <div class="row justify-content-center">
+                            <div class="col-5">
+                                <button type="button" class="btn btn-color" style="background: #00DA9D; color: white"
+                                        (click)="actualizarRol()" [disabled]="!rolEditar.form.valid">Actualizar Rol
+                                </button>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-color" style="background: #F33501; color: white"
+                                        data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

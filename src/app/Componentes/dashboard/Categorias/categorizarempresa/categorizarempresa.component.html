@@ -1,0 +1,129 @@
+<div class="container-fluid text-black mt-5 text-center">
+    <h1>CATEGORIZACIÓN DE EMPRESAS</h1>
+</div>
+
+
+<div class="container">
+    <br>
+    <form class="form-control" #datosEmpresa="ngForm">
+        <br>
+        <div class="row g-3">
+            <div class="col-sm">
+                <label for="idempresa" class="form-label">ID empresa:</label>
+                <select [(ngModel)]="catsubemps.idempresa" name="idempresa" required id="idempresa" class="form-control"
+                    #idempresa="ngModel">
+
+                    <option *ngFor="let empresas of empresa" [ngValue]="empresas">{{empresas.idempresa}}</option>
+
+                </select>
+                <div class="alert alert-danger" *ngIf="idempresa.invalid && (idempresa.dirty || idempresa.touched)">
+                    <div *ngIf="idempresa?.errors?.['required']">
+                        Ingrese la empresa a asignar en la categorización por favor
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm">
+                <label for="csedetalle" class="form-label">csedetalle</label>
+                <input class="form-control" id="csedetalle" name="csedetalle" required minlength="10" maxlength="100"
+                    [(ngModel)]="catsubemps.csedetalle" #csedetalle="ngModel">
+                <div class="alert alert-danger" *ngIf="csedetalle.invalid && (csedetalle.dirty || csedetalle.touched)">
+                    <div *ngIf="csedetalle?.errors?.['required']">
+                        Digite el csedetalle por favor
+                    </div>
+                    <div *ngIf="csedetalle?.errors?.['minlength']">
+                        El csedetalle debe tener mínimo 10 caracteres
+                    </div>
+                    <div *ngIf="csedetalle?.errors?.['maxlength']">
+                        El csedetalle debe tener máximo 25 caracteres
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="col-sm">
+                <label for="catnombre" class="form-label">Categoría:</label>
+                <select [(ngModel)]="catsubemps.idcatemp" name="catnombre" required id="catnombre" class="form-control"
+                    #catnombre="ngModel">
+
+                    <option *ngFor="let categorias of categoria" [ngValue]="categorias">{{categorias.catnombre}}
+                    </option>
+
+                </select>
+                <div class="alert alert-danger" *ngIf="catnombre.invalid && (catnombre.dirty || catnombre.touched)">
+                    <div *ngIf="catnombre?.errors?.['required']">
+                        Ingrese la categoría a asignar en la categorización por favor
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm">
+                <label for="subcatnombre" class="form-label">Subcategoría:</label>
+                <select [(ngModel)]="catsubemps.idsubcatemp" name="subcatnombre" required id="subcatnombre"
+                    class="form-control" #subcatnombre="ngModel">
+
+                    <option *ngFor="let subcategorias of subcategoria" [ngValue]="subcategorias">
+                        {{subcategorias.subcatnombre}}</option>
+
+                </select>
+                <div class="alert alert-danger"
+                    *ngIf="subcatnombre.invalid && (subcatnombre.dirty || subcatnombre.touched)">
+                    <div *ngIf="subcatnombre?.errors?.['required']">
+                        Ingrese la subcategoria a asignar en la categorización por favor
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- acordeón -->
+        <!-- <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Categorizar
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="form-group">
+                            <label for="inputEmail3">Categoría:</label>
+                            <div class="col-sm-10">
+                                <select id="inputState" class="form-control">
+                                    <option selected>Sin asignar...</option>
+                                    <option>Cat1</option>
+                                    <option>Cat2</option>
+                                    <option>Cat3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <label for="inputEmail3">Subcategoría:</label>
+                            <div class="col-sm-10">
+                                <select id="inputState" class="form-control">
+                                    <option selected>Sin asignar...</option>
+                                    <option>Sub1</option>
+                                    <option>Sub2</option>
+                                    <option>Sub2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <br>
+        <div class="mx-2 text-center ">
+            <button class="btn btn-color col-md-4" style="background-color: #00DA9D; color:white;  border: none"
+                    type="submit"
+                    [disabled]="!datosEmpresa.form.valid"
+                (click)="agregarCatSubEmp()">Guardar</button>
+        </div>
+        <br>
+    </form>
+</div>

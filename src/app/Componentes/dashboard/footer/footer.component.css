@@ -1,0 +1,32 @@
+/*
+.footer{
+  background: #195E4B;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+ !* position: absolute;
+  bottom: 10%;
+  width: 100%;*!
+}
+
+.foot{
+  position: relative;
+  bottom: 0;
+}
+*/
+
+.footer{
+  padding:10px 0;
+  color:white;
+  background-color:  #195E4B;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  /*position:fixed;
+  left:0px;
+  bottom:0px;
+  height:30px;
+  width:100%;*/
+}

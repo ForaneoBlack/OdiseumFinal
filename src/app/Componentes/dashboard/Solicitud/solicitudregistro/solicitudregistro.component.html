@@ -1,0 +1,150 @@
+<div class="container-fluid text-black mt-5 text-center">
+    <h2 class="text-center">SOLICITUD DE REGISTROS</h2>
+</div>
+
+<div class="container">
+
+    <br>
+
+    <table class="table mt-3 table-hover table-striped">
+        <thead style="background: #195E4B; color: white">
+        <tr>
+            <th scope="col" class="text-center">Fecha de registro</th>
+            <th scope="col" class="text-center">RUC</th>
+            <th scope="col" class="text-center">Empresa</th>
+            <th scope="col" class="text-center">sol_estado</th>
+            <th scope="col" class="text-center">Observacion</th>
+            <th scope="col" class="text-center">Detalle</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr class="text-center" *ngFor="let solicitudes of solicitud">
+            <th scope="row">{{solicitudes.sol_fecharegistro}}</th>
+            <td>{{solicitudes.idempresa.empruc}}</td>
+            <td>{{solicitudes.idempresa.empnombre}}</td>
+            <td>{{solicitudes.sol_estado}}</td>
+            <td></td>
+
+            <td style="text-align: center">
+                <button type="button" class="btn btn-color" data-bs-toggle="modal"
+                        data-bs-target="#detallesolicitud" (click)="abrirmodalDetalle(solicitudes)"
+                        style="background: #FFA084; color: white;">Detalle
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para detalle de solicitud -->
+<div class="modal fade" id="detallesolicitud" tabindex="-1" aria-labelledby="agregar" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header align-items-center" style="background: #195E4B; color: white">
+                <h1 class="modal-title fs-5">DETALLE DE SOLICITUD DE REGISTRO</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-control" #detalleSolicitud="ngForm">
+                    <div class="row g-3">
+                        <div class="col-sm">
+                            <label for="ruc">RUC:</label>
+                            <input type="number" class="form-control" placeholder="" id="ruc"
+                                   style="background: #D9D9D9;border-radius: 0px;"
+                                   name="ruc" disabled [(ngModel)]="empresas.empruc">
+                        </div>
+                        <div class="col-sm">
+                            <label for="fecha">Fecha:</label>
+                            <input type="date" class="form-control" placeholder="" id="fecha" name="fecha"
+                                   style="background: #D9D9D9;border-radius: 0px;"
+                                   disabled [(ngModel)]="empresas.empfecha">
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-sm">
+                            <label for="rlegal">Representante Legal:</label>
+                            <input type="text" class="form-control" placeholder="Nombre del Representante" id="rlegal"
+                                   style="background: #D9D9D9;border-radius: 0px;"
+                                   name="rlegal" disabled [(ngModel)]="empresas.emprepresentante">
+                        </div>
+                        <div class="col-sm">
+                            <label for="email">Correo:</label>
+                            <input type="mail" class="form-control" id="email" placeholder="ejemplo@correo.com"
+                                   style="background: #D9D9D9;border-radius: 0px;"
+                                   name="email" disabled [(ngModel)]="empresas.empcorreo">
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-sm">
+                            <label for="comercial">Nombre Comercial:</label>
+                            <input type="text" class="form-control" placeholder="Empresa XYZ" id="comercial"
+                                   style="background: #D9D9D9;border-radius: 0px;"
+                                   name="comercial" disabled [(ngModel)]="empresas.empnombre">
+                        </div>
+                        
+                            <div class="col-sm">
+                                <label for="social">Razon Social:</label>
+                                <input type="text" class="form-control" placeholder="" id="social" name="social" disabled
+                                       [(ngModel)]="empresas.emprazon">
+                            </div>
+                        
+                    </div>
+                    <br>
+                    
+                    <div class="row g-3">
+                        <div class="col-sm">
+                            <label for="telefono">Telefono: </label>
+                            <input type="number" class="form-control" id="telefono" name="telefono" disabled
+                                   [(ngModel)]="empresas.emptelefono">
+                        </div>
+                        <div class="col-sm">
+                            <label for="direccion">Direccion:</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" disabled
+                                   [(ngModel)]="empresas.empdireccion">
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm">
+                            <label for="trabajadores">N Trabajadores:</label>
+                            <input type="text" class="form-control" id="trabajadores" name="trabajadores" disabled
+                                   [(ngModel)]="empresas.empnumtrabajadores">
+                        </div>
+                        <div class="col-sm">
+                            <label for="ingreso">Ingreso anual:</label>
+                            <input type="number" class="form-control" id="ingreso" name="ingreso" disabled
+                                   [(ngModel)]="empresas.empingresoanual">
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm">
+                            <label for="ciudad">Ciudad:</label>
+                            <input type="text" class="form-control" id="ciudad" name="ciudad" disabled
+                                   [(ngModel)]="empresas.empciudad">
+                        </div>
+                        <div class="col-sm">
+                            <label for="estado">Estado:</label>
+                            <input type="text" class="form-control" id="estado" name="estado" disabled
+                                   [(ngModel)]="empresas.empestado">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="col-sm">
+                        <label for="observaciones">Observaciones:</label>
+                        <input style="max-height: +20%" type="text" class="form-control" id="observaciones" name="observaciones">
+                    </div>
+                    <br>
+                    <div class="mx-2 text-center ">
+                        <button class="btn btn-success col-md-4">Aceptar</button>
+                        <button class="btn btn-danger col-md-4 offset-md-1" type="button"
+                                data-bs-dismiss="modal">Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

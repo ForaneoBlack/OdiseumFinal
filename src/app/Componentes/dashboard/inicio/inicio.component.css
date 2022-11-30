@@ -1,0 +1,42 @@
+.img-fluid{
+    max-width: 100%;
+}
+
+container {
+   /* height: 79.4vh;*/
+    display: flex;
+   /* width: 100%;*/
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.titleOd {
+    min-height: 50px;
+    min-width: 50px;
+    font-size: 100px;
+    min-font-size: 50px;
+   /* font-weight: 600;*/
+   font-style: normal;
+    color: #F33501;
+
+}
+
+section:nth-child(1) {
+    background: linear-gradient(150deg, #ffffff, #b7cfca, #ffffff);
+    background-size: 400% 600%;
+    animation: BgGradient 8s ease infinite;
+}
+
+@keyframes BgGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+    }
+
+    100% {
+        background-position: 0% 100%;
+    }
+}
