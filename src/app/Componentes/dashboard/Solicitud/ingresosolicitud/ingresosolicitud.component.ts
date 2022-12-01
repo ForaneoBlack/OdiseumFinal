@@ -18,14 +18,16 @@ import { EmpresaLogin } from '../../../../Models/empresalogin';
 export class IngresosolicitudComponent implements OnInit {
 
 
-  public datos:EmpresaLogin=new EmpresaLogin();
-  id!:number;
+  public datos:Userlogin=new Userlogin();
+  id:number;
   public nombre!: string;
   public nombreemp!: string;
   idemp!:number;
   servicios: Servicio = new Servicio();
   empresas: empresa = new empresa();
   empresa: empresa [] = [];
+  empresasdatos : empresa = new empresa();
+  public datosusu: Usuario = new Usuario();
 
   usuarios: Usuario = new Usuario();
   usuario: Usuario [] = [];
@@ -36,17 +38,17 @@ export class IngresosolicitudComponent implements OnInit {
   constructor(private activedRoute: ActivatedRoute, private empresaService: EmpresaService, private solicitudService: SolicitudService, private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
+    this.guardarempresa()
     this.getEmpresas();
     this.getUsuarios();
     console.log()
     this.datos=JSON.parse(sessionStorage['usuario']);
-    this.id=this.datos.usu_id.usu_id;
-    this.nombre=this.datos.usu_id.usuusuario;
-    this.nombreemp=this.datos.empnombre;
-    this.idemp=this.datos.idempresa;
+    this.id=this.datos.usu_id;
+    this.nombre=this.datos.usuusuario;
+   
     console.log(this.nombre);
     this.obetenerusuario( this.id);
-    this.obetenerempresa(this.idemp);
+    //this.obetenerempresa(this.idemp);
     console.log(this.obetenerusuario(this.id));
 
     this.activedRoute.params
@@ -58,6 +60,25 @@ export class IngresosolicitudComponent implements OnInit {
             .subscribe(response => this.solicitudes = response)
         }
       })
+  }
+  guardarempresa(){
+
+    this.datosusu=JSON.parse(sessionStorage['usuario']);
+    console.log(this.datos.usu_id)
+     this.usuarioService.consultarempresa(this.datosusu.usu_id).subscribe(
+      response => {this.empresasdatos= response
+  
+        
+        this.obetenerempresa(this.empresasdatos.idempresa)
+        this.nombreemp=this.empresasdatos.empnombre;
+        this.idemp=this.empresasdatos.idempresa;
+        this.nombreemp=this.empresasdatos.empnombre;
+        console.log(this.id)
+        console.log(this.empresasdatos.empcorreo)}
+       )
+  
+  
+  
   }
   obetenerempresa(idempresa: number){
     this.empresaService.obtenerEmpresa(idempresa)

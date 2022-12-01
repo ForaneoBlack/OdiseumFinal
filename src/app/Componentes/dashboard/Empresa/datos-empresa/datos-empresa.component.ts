@@ -13,7 +13,7 @@ import { EmpresaLogin } from '../../../../Models/empresalogin';
   styleUrls: ["./datos-empresa.component.css"],
 })
 export class DatosEmpresaComponent implements OnInit {
-  public datos:EmpresaLogin=new EmpresaLogin();
+  public datos:Userlogin=new Userlogin();
   id!:number;
   public nombre!: string;
 
@@ -30,8 +30,8 @@ export class DatosEmpresaComponent implements OnInit {
     this.getUsuarios();
 
     this.datos=JSON.parse(sessionStorage['usuario']);
-    this.id=this.datos.usu_id.usu_id;
-    this.nombre=this.datos.usu_id.usuusuario;
+    this.id=this.datos.usu_id;
+    this.nombre=this.datos.usuusuario;
     console.log(this.nombre);
     this.obetenerusuario( this.id);
     console.log(this.obetenerusuario(this.id));

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, throwError} from "rxjs";
+import {catchError, map, Observable, throwError} from "rxjs";
 import {Usuario} from "../Models/usuario";
 import { empresa } from '../Models/empresa';
 
@@ -10,9 +10,10 @@ import { empresa } from '../Models/empresa';
 })
 export class UsuarioService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  //url: string = 'http://apiemprendimientos-env.eba-d95suqjg.us-east-1.elasticbeanstalk.com/api/usuario';
+// url: string = 'http://apiemprendimientos-env.eba-d95suqjg.us-east-1.elasticbeanstalk.com/api/usuario';
 
-  url: string = 'https://bryantenemea.com/api/usuario';
+  //url: string = 'https://bryantenemea.com/api/usuario';
+  url: string = 'http://localhost:8080/api/usuario';
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +33,8 @@ export class UsuarioService {
   }
 
   consultarempresa(usu_id: number): Observable<empresa>{
-    return this.http.get<empresa>(this.url+'/consulta_empresa/'+usu_id,{headers: this.HttpHeaders});
+    return this.http.get<empresa>(this.url+'/consulta_empresa/'+usu_id,{headers: this.HttpHeaders}).pipe(map(response => response as empresa));
+    
   }
   eliminarUser(user: Usuario){
     const path =`${this.url}/${user.usu_id}` ;

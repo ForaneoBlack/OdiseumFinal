@@ -17,8 +17,8 @@ import { empty, isObservable, Observable, observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   public datos: Userlogin = new Userlogin();
-  public datosemp: empresa = new empresa();
-  public rol?: String = "";
+  public datosemp: EmpresaLogin = new EmpresaLogin();
+  public rol: String = "";
   public nombre: String = "";
   public pruab: String = "";
   issloading = true;
@@ -39,22 +39,25 @@ export class HeaderComponent implements OnInit {
       this.datos = JSON.parse(sessionStorage['usuario']);
 
 
-      // @ts-ignore
+     
       this.rol = this.datos.rol_id.rolnombre;
       this.nombre = this.datos.usuusuario;
-      console.log(this.ususervice.consultarempresa(this.datos.usu_id));
-      this.ususervice.consultarempresa(this.datos.usu_id).subscribe(response => { sessionStorage.setItem('empresa', JSON.stringify(response)) });
-      this.datosemp = JSON.parse(sessionStorage['empresa']);
-      // this.pruab = this.datosemp.idempresa + "";
-      if (this.datosemp.idempresa== null) {
-
-        this.rol = 'sinempresa'
-
-
-      } else {
-
-
+      if(this.rol!='Administrador' && this.rol!='Colaborador'){
+        this.ususervice.consultarempresa(this.datos.usu_id).subscribe(response => {this.rol},err => {404
+      
+          this.rol='sinempresa';
+          console.log(this.rol)
+        });
       }
+      
+      //console.log(this.ususervice.consultarempresa(this.datos.usu_id));
+    
+      
+      //this.datosemp = JSON.parse(sessionStorage['empresa']);
+      //console.log(this.datosemp);
+     
+
+      
 
 
 

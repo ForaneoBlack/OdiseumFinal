@@ -6,6 +6,7 @@ import { Userlogin } from 'src/app/Models/userlogin';
 import Swal from 'sweetalert2';
 import { rol_id } from '../../Models/userlogin';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsuarioService } from 'src/app/Service/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   //Obtencion de datos de sesion
   public userRequest: Userlogin = new Userlogin();
 
-  constructor(private router: Router, private LoginService: LoginService)
+  constructor(private router: Router, private LoginService: LoginService,private ususervice: UsuarioService)
   {}
 
   ngOnInit(): void {}
@@ -29,8 +30,13 @@ export class LoginComponent implements OnInit {
     this.LoginService.Loginuser(this.userRequest).subscribe(
       data => {
         if(data!=null){
+
           sessionStorage.clear;
+
         sessionStorage.setItem('usuario', JSON.stringify(data));
+        //this.ususervice.consultarempresa(data.usu_id).subscribe(response => { sessionStorage.setItem('empresa', JSON.stringify(response)) });
+
+
 
           this.router
             .navigate(["/dashboard/inicio"])

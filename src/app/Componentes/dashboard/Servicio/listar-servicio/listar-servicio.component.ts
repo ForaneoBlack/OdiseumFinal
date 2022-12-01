@@ -23,24 +23,24 @@ import { Userlogin } from '../../../../Models/userlogin';
   styleUrls: ['./listar-servicio.component.css']
 })
 export class ListarServicioComponent implements OnInit {
-  public datos: Userlogin=new Userlogin();
+  public datos: Userlogin = new Userlogin();
   public datosusu: Usuario = new Usuario();
 
-  id!:number;
-  idemp!:number;
-  public nombre!: string;
+  id: number;
+  idemp: number;
+  public nombre: string;
   servicios: Servicio = new Servicio();
-  servicio: Servicio [] = [];
+  servicio: Servicio[] = [];
   empresas: empresa = new empresa();
-  empresasdatos : empresa = new empresa();
+  empresasdatos: empresa = new empresa();
 
-  categoria: Categoriaservicio [] = [];
-  subcategoria: Subcategoriaservicio [] = [];
-  empresa : empresa [] = [];
+  categoria: Categoriaservicio[] = [];
+  subcategoria: Subcategoriaservicio[] = [];
+  empresa: empresa[] = [];
 
   ngOnInit(): void {
 
-    this.datos=JSON.parse(sessionStorage['usuario']);
+    this.datos = JSON.parse(sessionStorage['usuario']);
     this.getSubcategorias();
     this.getCategorias();
     this.guardarempresa();
@@ -66,46 +66,48 @@ export class ListarServicioComponent implements OnInit {
   }
 
 
-  constructor(private modalService: NgbModal,private empresaService:EmpresaService, private subcategoriaService: SubcategoriaservicioService, private categoriaService: CategoriaservicioService , private servicioservice: ServicioService,private usuarioservicio: UsuarioService, private activedRoute: ActivatedRoute, private router: Router) {
+  constructor(private modalService: NgbModal, private empresaService: EmpresaService, private subcategoriaService: SubcategoriaservicioService, private categoriaService: CategoriaservicioService, private servicioservice: ServicioService, private usuarioservicio: UsuarioService, private activedRoute: ActivatedRoute, private router: Router) {
   }
   getEmpresas() {
     this.empresaService.getEmpresa()
       .subscribe(response => this.empresa = response);
   }
-  guardarempresa(){
+  guardarempresa() {
 
-  this.datosusu=JSON.parse(sessionStorage['usuario']);
-  console.log(this.datos.usu_id)
-   this.usuarioservicio.consultarempresa(this.datosusu.usu_id).subscribe(
-    response => {this.empresasdatos= response
+    this.datosusu = JSON.parse(sessionStorage['usuario']);
+    console.log(this.datos.usu_id)
+    this.usuarioservicio.consultarempresa(this.datosusu.usu_id).subscribe(
+      response => {
+        this.empresasdatos = response
 
-      this.obetenerservicio(this.empresasdatos.idempresa);
-      this.obetenerempresa(this.empresasdatos.idempresa)
-      this.nombre=this.empresasdatos.empnombre;
-      console.log(this.id)
-      console.log(this.empresasdatos.empcorreo)}
-     )
+        this.obetenerservicio(this.empresasdatos.idempresa);
+        this.obetenerempresa(this.empresasdatos.idempresa)
+        this.nombre = this.empresasdatos.empnombre;
+        console.log(this.id)
+        console.log(this.empresasdatos.empcorreo)
+      }
+    )
 
 
 
-}
-obetenerempresa(idempresa: number){
-  this.empresaService.obtenerEmpresa(idempresa)
-  .subscribe(response => {
-      this.empresas = response
-      console.log(response)
-  });
+  }
+  obetenerempresa(idempresa: number) {
+    this.empresaService.obtenerEmpresa(idempresa)
+      .subscribe(response => {
+        this.empresas = response
+        console.log(response)
+      });
 
-}
+  }
 
-  obetenerservicio(usu_id: number){
+  obetenerservicio(usu_id: number) {
     this.servicioservice.obtenerServicioempresa(usu_id)
-    .subscribe(response => {
+      .subscribe(response => {
         this.servicio = response
         console.log(response)
-    });
+      });
 
-}
+  }
 
 
   getCategorias() {
@@ -124,32 +126,32 @@ obetenerempresa(idempresa: number){
         console.log('exito');
         console.log(response)
         this.servicio.push(response);
-        // @ts-ignore
+        
         document.getElementById("closeM1").click();
 
       });
   }
 
-  cleanModal(){
+  cleanModal() {
     this.servicios = new Servicio();
   }
   actualizarServicio() {
     this.servicioservice.updateServicio(this.servicios)
       .subscribe(response => {
         console.log('actualizado');
-       this.servicio.forEach((resp,index) => {
+        this.servicio.forEach((resp, index) => {
 
-         if(resp.idservicio == response.idservicio){
-           this.servicio[index] = response;
-         }
-       });
-        // @ts-ignore
+          if (resp.idservicio == response.idservicio) {
+            this.servicio[index] = response;
+          }
+        });
+        
         document.getElementById("closeM2").click();
       })
   }
 
   abrirmodaleditar(servicio: Servicio) {
-    this.servicios = {...servicio};
+    this.servicios = { ...servicio };
 
   }
 
@@ -199,14 +201,14 @@ obetenerempresa(idempresa: number){
     })
   }
 
-  compararcategoria(o1: Categoriaservicio, o2: Categoriaservicio): boolean{
-    if(o1==undefined && o2 == undefined)return true;
-    return o1 == null || o2 ==null || o1 == undefined || o2 == undefined ? false : o1.idcatser == o2.idcatser;
+  compararcategoria(o1: Categoriaservicio, o2: Categoriaservicio): boolean {
+    if (o1 == undefined && o2 == undefined) return true;
+    return o1 == null || o2 == null || o1 == undefined || o2 == undefined ? false : o1.idcatser == o2.idcatser;
 
   }
-  compararsubcategoria(o1: Subcategoriaservicio, o2: Subcategoriaservicio): boolean{
-    if(o1==undefined && o2 == undefined)return true;
-    return o1 == null || o2 ==null || o1 == undefined || o2 == undefined ? false : o1.idsubcat == o2.idsubcat;
+  compararsubcategoria(o1: Subcategoriaservicio, o2: Subcategoriaservicio): boolean {
+    if (o1 == undefined && o2 == undefined) return true;
+    return o1 == null || o2 == null || o1 == undefined || o2 == undefined ? false : o1.idsubcat == o2.idsubcat;
 
   }
 
