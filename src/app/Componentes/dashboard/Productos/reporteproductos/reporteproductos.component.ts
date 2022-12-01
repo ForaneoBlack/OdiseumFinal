@@ -28,7 +28,7 @@ export class ReporteproductosComponent implements OnInit {
     this.getProducto();
     this.operacion();
     /*this.getVenta(this.total)*/
-    this.total = suma(this.producto);
+    this.total
     this.activedRoute.params
       .subscribe(params => {
         let idproducto: number = params['idproducto'];
@@ -50,7 +50,11 @@ export class ReporteproductosComponent implements OnInit {
 
   getProducto() {
     this.productoService.getProducto()
-      .subscribe(response => this.producto = response);
+      .subscribe(response => {
+        this.producto = response
+        this.total = suma(response)
+        }
+      );
   }
 
   /* getVenta(id: number){
