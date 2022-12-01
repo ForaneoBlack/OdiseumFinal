@@ -1,350 +1,351 @@
 <div class="container-fluid text-black mt-5 text-center">
-    <h2>
-        INGRESO DATOS DE EMPRESA
-    </h2>
+  <h2>
+    INGRESO DATOS DE EMPRESA
+  </h2>
 </div>
 
 <br>
 
 <div class="container">
+  <br>
+  <form class="form-control" #datosEmpresa="ngForm" style="border-radius: 25px;border-color: #195E4B">
     <br>
-    <form class="form-control" #datosEmpresa="ngForm" style="border-radius: 25px;border-color: #195E4B">
-        <br>
-        <div class="container text-center">
-            <h4>DATOS GENERALES</h4>
+    <div class="container text-center">
+      <h4>DATOS GENERALES</h4>
+    </div>
+    <br>
+    <div class="row g-3">
+      <div class="col-sm">
+        <label for="ruc">RUC:</label>
+        <input type="text" class="form-control" placeholder="" id="ruc" name="ruc" required minlength="13"
+               maxlength="13" [(ngModel)]="empresas.empruc" #ruc="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)">
+          <div *ngIf="ruc?.errors?.['required']">
+            Ingrese el RUC
+          </div>
+          <div *ngIf="ruc?.errors?.['minlength']">
+            El RUC debe tener mínimo 13 dígitos
+          </div>
+          <div *ngIf="ruc?.errors?.['maxlength']">
+            El RUC debe tener como máximo 13 dígitos
+          </div>
         </div>
-        <br>
-        <div class="row g-3">
-            <div class="col-sm">
-                <label for="ruc">RUC:</label>
-                <input type="text" class="form-control" placeholder="" id="ruc" name="ruc" required minlength="3"
-                    maxlength="15" [(ngModel)]="empresas.empruc" #ruc="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)">
-                    <div *ngIf="ruc?.errors?.['required']">
-                        Digite el RUC por favor
-                    </div>
-                    <div *ngIf="ruc?.errors?.['minlength']">
-                        El RUC debe tener mínimo 10 dígitos
-                    </div>
-                    <div *ngIf="ruc?.errors?.['maxlength']">
-                        El RUC debe tener como máximo 10 dígitos
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <label for="comercial">Nombre Comercial:</label>
-                <input type="text" class="form-control" placeholder="Empresa XYZ" id="comercial" name="comercial"
-                    required minlength="3" maxlength="50" [(ngModel)]="empresas.empnombre" #comercial="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="comercial.invalid && (comercial.dirty || comercial.touched)">
-                    <div *ngIf="comercial?.errors?.['required']">
-                        Escriba el nombre comercial por favor
-                    </div>
-                    <div *ngIf="comercial?.errors?.['minlength']">
-                        El nombre comercial debe tener mínimo 3 caracteres
-                    </div>
-                    <div *ngIf="comercial?.errors?.['maxlength']">
-                        El nombre comercial debe tener máximo 50 caracteres
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-3">
-            <div class="col-sm">
-                <label for="rlegal">Representante Legal:</label>
-                <input type="text" class="form-control" placeholder="Nombre del Representante" id="rlegal" name="rlegal"
-                    required minlength="3" maxlength="50" [(ngModel)]="empresas.emprepresentante" #rlegal="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="rlegal.invalid && (rlegal.dirty || rlegal.touched)">
-                    <div *ngIf="rlegal?.errors?.['required']">
-                        Escriba el nombre del representante legal por favor
-                    </div>
-                    <div *ngIf="rlegal?.errors?.['minlength']">
-                        El nombre del representante legal debe tener mínimo 3 caracteres
-                    </div>
-                    <div *ngIf="rlegal?.errors?.['maxlength']">
-                        El nombre del representante legal debe tener máximo 50 caracteres
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm">
-                <label for="email">Correo:</label>
-                <input type="mail" class="form-control" id="email" placeholder="ejemplo@correo.com" name="email"
-                    required minlength="10" maxlength="50"
-                       style="background: #D9D9D9;border-radius: 0px;"
-                       pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" [(ngModel)]="empresas.empcorreo" #email="ngModel">
-                <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
-                    <div *ngIf="email?.errors?.['required']">
-                        Escriba el correo por favor
-                    </div>
-                    <div *ngIf="email?.errors?.['minlength']">
-                        El correo debe tener mínimo 10 caracteres
-                    </div>
-                    <div *ngIf="email?.errors?.['maxlength']">
-                        El correo debe tener máximo 50 caracteres
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-3">
-        </div>
-        <br>
-        <div class="row g-3">
-            <div class="col-sm">
-                <label for="social">Razon Social:</label>
-                <input type="text" class="form-control" placeholder="" id="social" name="social" required minlength="2"
-                    maxlength="25" [(ngModel)]="empresas.emprazon" #social="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="social.invalid && (social.dirty || social.touched)">
-                    <div *ngIf="social?.errors?.['required']">
-                        Escriba la razón social por favor
-                    </div>
-                    <div *ngIf="social?.errors?.['minlength']">
-                        La razón social debe tener mínimo 2 caracteres
-                    </div>
-                    <div *ngIf="social?.errors?.['maxlength']">
-                        La razón social debe tener máximo 25 caracteres
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm">
-                <label for="direccion">Direccion:</label>
-                <input type="text" class="form-control" id="direccion" name="direccion" required minlength="5"
-                    maxlength="50" [(ngModel)]="empresas.empdireccion" #direccion="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
-                    <div *ngIf="direccion?.errors?.['required']">
-                        Escriba la dirección por favor
-                    </div>
-                    <div *ngIf="direccion?.errors?.['minlength']">
-                        La dirección debe tener mínimo 5 caracteres
-                    </div>
-                    <div *ngIf="direccion?.errors?.['maxlength']">
-                        La dirección debe tener máximo 50 caracteres
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="row g-3">
-            <div class="col-sm">
-                <label for="telefono">Telefono: </label>
-                <input type="text" class="form-control" id="telefono" name="telefono" required minlength="10"
-                    maxlength="10" [(ngModel)]="empresas.emptelefono" #telefono="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
-                    <div *ngIf="telefono?.errors?.['required']">
-                        Escriba el número de teléfono por favor
-                    </div>
-                    <div *ngIf="telefono?.errors?.['minlength']">
-                        El número de teléfono debe tener mínimo 10 caracteres
-                    </div>
-                    <div *ngIf="telefono?.errors?.['maxlength']">
-                        El número de teléfono debe tener hasta 10 caracteres
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm">
-                <label for="ingreso">Ingreso anual: </label>
-                <input type="text" class="form-control" id="ingreso" placeholder="1000" name="ingreso" required
-                    minlength="4" maxlength="10" [(ngModel)]="empresas.empingresoanual" #ingreso="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="ingreso.invalid && (ingreso.dirty || ingreso.touched)">
-                    <div *ngIf="ingreso?.errors?.['required']">
-                        Escriba el ingreso anual por favor
-                    </div>
-                    <div *ngIf="ingreso?.errors?.['minlength']">
-                        El ingreso anual debe tener mínimo 4 caracteres
-                    </div>
-                    <div *ngIf="ingreso?.errors?.['maxlength']">
-                        El ingreso anual debe tener máximo 10 caracteres
-                    </div>
-
-                </div>
-            </div>
+      </div>
+      <div class="col-sm">
+        <label for="comercial">Nombre Comercial:</label>
+        <input type="text" class="form-control" placeholder="Empresa XYZ" id="comercial" name="comercial"
+               required minlength="5" maxlength="70" [(ngModel)]="empresas.empnombre" #comercial="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="comercial.invalid && (comercial.dirty || comercial.touched)">
+          <div *ngIf="comercial?.errors?.['required']">
+            Ingrese el nombre comercial
+          </div>
+          <div *ngIf="comercial?.errors?.['minlength']">
+            El nombre comercial debe tener mínimo 5 caracteres
+          </div>
+          <div *ngIf="comercial?.errors?.['maxlength']">
+            El nombre comercial debe tener máximo 70 caracteres
+          </div>
 
         </div>
+      </div>
+    </div>
 
-        <div class="row g-3">
-            <div class="col-sm">
-                <label for="trabajadores">N° Trabajadores:</label>
-                <input type="text" class="form-control" id="trabajadores" name="trabajadores" required minlength="1"
-                    maxlength="4" [(ngModel)]="empresas.empnumtrabajadores" #trabajadores="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger"
-                    *ngIf="trabajadores.invalid && (trabajadores.dirty || trabajadores.touched)">
-                    <div *ngIf="trabajadores?.errors?.['required']">
-                        Escriba el n° de trabajadores por favor
-                    </div>
-                    <div *ngIf="trabajadores?.errors?.['minlength']">
-                        El n° de trabajadores debe tener mínimo 1 caracter
-                    </div>
-                    <div *ngIf="trabajadores?.errors?.['maxlength']">
-                        El n° de trabajadores debe tener máximo 4 caracteres
-                    </div>
+    <div class="row g-3">
+      <div class="col-sm">
+        <label for="rlegal">Representante Legal:</label>
+        <input type="text" class="form-control" placeholder="Nombre del Representante" id="rlegal" name="rlegal"
+               required minlength="5" maxlength="70" [(ngModel)]="empresas.emprepresentante" #rlegal="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="rlegal.invalid && (rlegal.dirty || rlegal.touched)">
+          <div *ngIf="rlegal?.errors?.['required']">
+            Ingrese el nombre del representante legal
+          </div>
+          <div *ngIf="rlegal?.errors?.['minlength']">
+            El nombre del representante legal debe tener mínimo 5 caracteres
+          </div>
+          <div *ngIf="rlegal?.errors?.['maxlength']">
+            El nombre del representante legal debe tener máximo 70 caracteres
+          </div>
 
-                </div>
-            </div>
-            <div class="col-sm">
-                <label for="ciudad">Ciudad:</label>
-                <input type="text" class="form-control" id="ciudad" name="ciudad" required minlength="3" maxlength="15"
-                    [(ngModel)]="empresas.empciudad" #ciudad="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
-                    <div *ngIf="ciudad?.errors?.['required']">
-                        Escriba la ciudad por favor
-                    </div>
-                    <div *ngIf="ciudad?.errors?.['minlength']">
-                        La ciudad debe tener mínimo 3 caracteres
-                    </div>
-                    <div *ngIf="ciudad?.errors?.['maxlength']">
-                        La ciudad debe tener máximo 15 caracteres
-                    </div>
-
-                </div>
-            </div>
         </div>
-        <div class="row g-3">
-           
-          
+      </div>
+      <div class="col-sm">
+        <label for="email">Correo:</label>
+        <input type="mail" class="form-control" id="email" placeholder="ejemplo@correo.com" name="email"
+               required minlength="10" maxlength="70"
+               style="background: #D9D9D9;border-radius: 0px;"
+               pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+               [(ngModel)]="empresas.empcorreo" #email="ngModel">
+        <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email?.errors?.['required']">
+            Ingrese el correo
+          </div>
+          <div *ngIf="email?.errors?.['minlength']">
+            El correo debe tener mínimo 10 caracteres
+          </div>
+          <div *ngIf="email?.errors?.['maxlength']">
+            El correo debe tener máximo 70 caracteres
+          </div>
 
-            <!-- <div class="col-sm">
-                <label for="usu_id">Usuarios</label>
-                <input [innerText]="nombre" type="text" class="form-control" id="usu_id" name="usu_id" required minlength="3" maxlength="15"
-                [(ngModel)]="empresas.usu_id" [value]="usuarios.usu_id"
-                       style="background: #D9D9D9;border-radius: 0px;">
-
-
-
-               
-            </div> -->
-            <div class="form-grow">
-                <label for="usu_id" class="form-label">Usuario </label>
-                <select [(ngModel)]="empresas.usu_id" name="usu_id" id="usu_id"
-                        class="form-control" required #idusuario="ngModel"
-                        style="background: #D9D9D9;border-radius: 15px;">
-
-                    <option 
-                            [ngValue]="usuarios">{{nombre}}
-                    </option>
-                </select>
-                <div class="alert alert-danger" *ngIf="idusuario.invalid && (idusuario.dirty || idusuario.touched)">
-                    <div *ngIf="idusuario?.errors?.['required']">
-                        Ingrese la empresa a asignar en la solicitud por favor
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <label for="empestado">Estado:</label>
-                <select [(ngModel)]="empresas.empestado" name="empestado" required id="empestado" class="form-control"
-                    #estado="ngModel"
-                        style="background: #D9D9D9;border-radius: 15px;">
-
-                    <option>Activo</option>
-                    <option>Pendiente</option>
-                    <option>Rechazado</option>
-
-                </select>
-                <div class="alert alert-danger" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
-                    <div *ngIf="estado?.errors?.['required']">
-                        Ingrese el estado por favor
-                    </div>
-                </div>
-            </div>
         </div>
+      </div>
+    </div>
 
-        <div class="row g-3">
+    <div class="row g-3">
+    </div>
+    <br>
+    <div class="row g-3">
+      <div class="col-sm">
+        <label for="social">Razon Social:</label>
+        <input type="text" class="form-control" placeholder="" id="social" name="social" required minlength="5"
+               maxlength="70" [(ngModel)]="empresas.emprazon" #social="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="social.invalid && (social.dirty || social.touched)">
+          <div *ngIf="social?.errors?.['required']">
+            Ingrese la razón social
+          </div>
+          <div *ngIf="social?.errors?.['minlength']">
+            La razón social debe tener mínimo 5 caracteres
+          </div>
+          <div *ngIf="social?.errors?.['maxlength']">
+            La razón social debe tener máximo 70 caracteres
+          </div>
 
-            <div class="col-sm">
-                <label for="fecha">Fecha:</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" required [(ngModel)]="empresas.empfecha"
-                    #fecha="ngModel"
-                       style="background: #D9D9D9;border-radius: 10px;">
-                <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
-                    <div *ngIf="fecha?.errors?.['required']">
-                        Ingrese la fecha por favor
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <label for="observaciones">Observaciones:</label>
-                <input type="text" class="form-control" id="observaciones" name="observaciones"
-                    maxlength="50" [(ngModel)]="empresas.empobservaciones" #observaciones="ngModel"
-                       style="background: #D9D9D9;border-radius: 0px;">
-                <div class="alert alert-danger"
-                    *ngIf="observaciones.invalid && (observaciones.dirty || observaciones.touched)">
-                    <div *ngIf="observaciones?.errors?.['required']">
-                        Escriba las observaciones por favor
-                    </div>
-                    <div *ngIf="observaciones?.errors?.['minlength']">
-                        Las observaciones deben tener mínimo 2 caracteres
-                    </div>
-                    <div *ngIf="observaciones?.errors?.['maxlength']">
-                        Las observaciones deben tener máximo 50 caracteres
-                    </div>
-
-                </div>
-            </div>
         </div>
+      </div>
+      <div class="col-sm">
+        <label for="direccion">Direccion:</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" required minlength="5"
+               maxlength="70" [(ngModel)]="empresas.empdireccion" #direccion="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
+          <div *ngIf="direccion?.errors?.['required']">
+            Ingrese la dirección
+          </div>
+          <div *ngIf="direccion?.errors?.['minlength']">
+            La dirección debe tener mínimo 5 caracteres
+          </div>
+          <div *ngIf="direccion?.errors?.['maxlength']">
+            La dirección debe tener máximo 70 caracteres
+          </div>
 
-        <br>
+        </div>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-sm">
+        <label for="telefono">Telefono: </label>
+        <input type="text" class="form-control" id="telefono" name="telefono" required minlength="10"
+               maxlength="10" [(ngModel)]="empresas.emptelefono" #telefono="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+          <div *ngIf="telefono?.errors?.['required']">
+            Ingrese el número de teléfono
+          </div>
+          <div *ngIf="telefono?.errors?.['minlength']">
+            El número de teléfono debe tener mínimo 10 caracteres
+          </div>
+          <div *ngIf="telefono?.errors?.['maxlength']">
+            El número de teléfono debe tener hasta 10 caracteres
+          </div>
 
-        <!-- acordeón -->
-        <!-- <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Categorizar
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                    data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div class="form-group">
-                            <label for="inputEmail3">Categoría:</label>
-                            <div class="col-sm-10">
-                                <select id="inputState" class="form-control">
-                                    <option selected>Sin asignar...</option>
-                                    <option>Cat1</option>
-                                    <option>Cat2</option>
-                                    <option>Cat3</option>
-                                </select>
-                            </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <label for="ingreso">Ingreso anual: </label>
+        <input type="text" class="form-control" id="ingreso" placeholder="1000" name="ingreso" required
+               minlength="10" maxlength="10000" [(ngModel)]="empresas.empingresoanual" #ingreso="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="ingreso.invalid && (ingreso.dirty || ingreso.touched)">
+          <div *ngIf="ingreso?.errors?.['required']">
+            Ingrese el ingreso anual
+          </div>
+          <div *ngIf="ingreso?.errors?.['minlength']">
+            El ingreso anual debe tener mínimo 10 caracteres
+          </div>
+          <div *ngIf="ingreso?.errors?.['maxlength']">
+            El ingreso anual debe tener máximo 10000 caracteres
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row g-3">
+      <div class="col-sm">
+        <label for="trabajadores">N° Trabajadores:</label>
+        <input type="text" class="form-control" id="trabajadores" name="trabajadores" required minlength="1"
+               maxlength="70" [(ngModel)]="empresas.empnumtrabajadores" #trabajadores="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger"
+             *ngIf="trabajadores.invalid && (trabajadores.dirty || trabajadores.touched)">
+          <div *ngIf="trabajadores?.errors?.['required']">
+            Ingrese el n° de trabajadores
+          </div>
+          <div *ngIf="trabajadores?.errors?.['minlength']">
+            El n° de trabajadores debe tener mínimo 1 caracter
+          </div>
+          <div *ngIf="trabajadores?.errors?.['maxlength']">
+            El n° de trabajadores debe tener máximo 70 caracteres
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm">
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" class="form-control" id="ciudad" name="ciudad" required minlength="5" maxlength="70"
+               [(ngModel)]="empresas.empciudad" #ciudad="ngModel"
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
+          <div *ngIf="ciudad?.errors?.['required']">
+            Ingrese la ciudad
+          </div>
+          <div *ngIf="ciudad?.errors?.['minlength']">
+            La ciudad debe tener mínimo 5 caracteres
+          </div>
+          <div *ngIf="ciudad?.errors?.['maxlength']">
+            La ciudad debe tener máximo 70 caracteres
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-3">
+
+
+      <!-- <div class="col-sm">
+          <label for="usu_id">Usuarios</label>
+          <input [innerText]="nombre" type="text" class="form-control" id="usu_id" name="usu_id" required minlength="3" maxlength="15"
+          [(ngModel)]="empresas.usu_id" [value]="usuarios.usu_id"
+                 style="background: #D9D9D9;border-radius: 0px;">
+
+
+
+
+      </div> -->
+      <div class="form-grow">
+        <label for="usu_id" class="form-label">Usuario </label>
+        <select [(ngModel)]="empresas.usu_id" name="usu_id" id="usu_id"
+                class="form-control" required #idusuario="ngModel"
+                style="background: #D9D9D9;border-radius: 15px;">
+          <option
+            [ngValue]="usuarios">{{nombre}}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="idusuario.invalid && (idusuario.dirty || idusuario.touched)">
+          <div *ngIf="idusuario?.errors?.['required']">
+            Escoja el usuario
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <label for="empestado">Estado:</label>
+        <select [(ngModel)]="empresas.empestado" name="empestado" required id="empestado" class="form-control"
+                #estado="ngModel"
+                style="background: #D9D9D9;border-radius: 15px;">
+
+          <option>Activo</option>
+          <option>Pendiente</option>
+          <option>Rechazado</option>
+
+        </select>
+        <div class="alert alert-danger" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+          <div *ngIf="estado?.errors?.['required']">
+            Escoja el estado
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+
+      <div class="col-sm">
+        <label for="fecha">Fecha:</label>
+        <input type="date" class="form-control" id="fecha" name="fecha" required [(ngModel)]="empresas.empfecha"
+               #fecha="ngModel"
+               style="background: #D9D9D9;border-radius: 10px;">
+        <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+          <div *ngIf="fecha?.errors?.['required']">
+            Ingrese la fecha
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <label for="observaciones">Observaciones:</label>
+        <input type="text" class="form-control" id="observaciones" name="observaciones" minlength="25"
+               maxlength="70" [(ngModel)]="empresas.empobservaciones" #observaciones="ngModel" required
+               style="background: #D9D9D9;border-radius: 0px;">
+        <div class="alert alert-danger"
+             *ngIf="observaciones.invalid && (observaciones.dirty || observaciones.touched)">
+          <div *ngIf="observaciones?.errors?.['required']">
+            Ingrese las observaciones
+          </div>
+          <div *ngIf="observaciones?.errors?.['minlength']">
+            Las observaciones deben tener mínimo 25 caracteres
+          </div>
+          <div *ngIf="observaciones?.errors?.['maxlength']">
+            Las observaciones deben tener máximo 70 caracteres
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <!-- acordeón -->
+    <!-- <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Categorizar
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="form-group">
+                        <label for="inputEmail3">Categoría:</label>
+                        <div class="col-sm-10">
+                            <select id="inputState" class="form-control">
+                                <option selected>Sin asignar...</option>
+                                <option>Cat1</option>
+                                <option>Cat2</option>
+                                <option>Cat3</option>
+                            </select>
                         </div>
+                    </div>
 
-                        <br>
+                    <br>
 
-                        <div class="form-group">
-                            <label for="inputEmail3">Subcategoría:</label>
-                            <div class="col-sm-10">
-                                <select id="inputState" class="form-control">
-                                    <option selected>Sin asignar...</option>
-                                    <option>Sub1</option>
-                                    <option>Sub2</option>
-                                    <option>Sub2</option>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <label for="inputEmail3">Subcategoría:</label>
+                        <div class="col-sm-10">
+                            <select id="inputState" class="form-control">
+                                <option selected>Sin asignar...</option>
+                                <option>Sub1</option>
+                                <option>Sub2</option>
+                                <option>Sub2</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> -->
-
-        <br>
-        <div class="mx-2 text-center ">
-            <button class="btn btn-color col-md-4" type="submit" 
-                (click)="agregarEmpresa()"
-                    style="background: #00DA9D; color: white; border: none"  [disabled]="!datosEmpresa.form.valid" routerLink="/dashboard/inicio">Guardar</button>
         </div>
-        <br>
-    </form>
+    </div> -->
+
+    <br>
+    <div class="mx-2 text-center ">
+      <button class="btn btn-color col-md-4" type="submit"
+              (click)="agregarEmpresa()"
+              style="background: #00DA9D; color: white; border: none" [disabled]="!datosEmpresa.form.valid"
+              routerLink="/dashboard/inicio">Guardar
+      </button>
+    </div>
+    <br>
+  </form>
 </div>
+<br>

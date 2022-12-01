@@ -1,443 +1,458 @@
 <div class="container-fluid text-black mt-5 text-center">
-    <h2>Lista de Productos</h2>
+  <h2>Lista de Productos</h2>
 </div>
 
 <div class="container">
-    <div class="d-flex mt-3 mx-3 justify-content-end">
-        <button type="button" class="btn btn-color" data-bs-toggle="modal" data-bs-target="#agregarproducto"
-                (click)="cleanModal()" style="background: #00DA9D; color: white; border-radius: 20px; width:
+  <div class="d-flex mt-3 mx-3 justify-content-end">
+    <button type="button" class="btn btn-color" data-bs-toggle="modal" data-bs-target="#agregarproducto"
+            (click)="cleanModal()" style="background: #00DA9D; color: white; border-radius: 20px; width:
      200px">Agregar Producto
-        </button>
-    </div>
+    </button>
+  </div>
 
-    <table class="table mt-3 table-hover table-striped">
-        <thead style="background: #195E4B; color: white">
-        <tr>
-            <th scope="col"></th>
-            <th scope="col" class="text-center">Producto</th>
-            <th scope="col" class="text-center">Categoría</th>
-            <th scope="col" class="text-center">Stock</th>
-            <th scope="col" class="text-center">Configuración</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let productos of producto">
-            <td class="img-fluid align-items-center">
-                <a href="{{productos.imagen}}" data-fancybox>
-                    <img src="{{productos.imagen}}" alt="" class="img-fluid"/></a>
-            </td>
-            <td class="text-center">
-                <div class="fs-5 fw-bold">{{productos.nombre}}</div>
-                <p class="text-muted small">{{productos.precio}}</p>
-            </td>
-            <td class="text-center">
-                <div>
-                    <span class="badge rounded-pill bg-ligth text-dark me-1">{{productos.catproid.catpronombre}}</span>
-                </div>
-                <span class="badge rounded-pill bg-ligth text-dark me-1">{{productos.subcatproid.subcatpronombre}}</span>
-            </td>
-            <td class="text-center">
-                <p>{{productos.stock}}</p>
-            </td>
-            <td class="text-center">
-                <div class="btn-group ">
-                    <button class="btn btn-color dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            style="background: #5CCB4A; color: white;">
-                        Opciones
-                    </button>
-                    <ul class="dropdown-menu btn-color" style="border: none; background: none">
-                        <button class=" dropdown-item " data-bs-toggle="modal"
-                                data-bs-target="#editarproducto" (click)="abrirmodaleditar(productos)"
-                                style="background: #00DA9D; color: white;">Editar
-                        </button>
-                        <button class=" dropdown-item " (click)="delete(productos)"
-                                style="background: #F33501; color: white;">Eliminar
-                        </button>
-                    </ul>
-                </div>
+  <table class="table mt-3 table-hover table-striped">
+    <thead style="background: #195E4B; color: white">
+    <tr>
+      <th scope="col" class="text-center"></th>
+      <th scope="col" class="text-center">Producto</th>
+      <th scope="col" class="text-center">Categoría</th>
+      <th scope="col" class="text-center">Stock</th>
+      <th scope="col" class="text-center">Configuración</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let productos of producto">
+      <td class="img-fluid align-items-center">
+        <a href="{{productos.imagen}}" data-fancybox>
+          <img src="{{productos.imagen}}" alt="" class="img-fluid"/></a>
+      </td>
+      <td class="text-center">
+        <div class="fs-5 fw-bold">{{productos.nombre}}</div>
+        <p class="text-muted small">{{productos.precio}}</p>
+      </td>
+      <td class="text-center">
+        <div>
+          <span class="badge rounded-pill bg-ligth text-dark me-1">{{productos.catproid.catpronombre}}</span>
+        </div>
+        <span class="badge rounded-pill bg-ligth text-dark me-1">{{productos.subcatproid.subcatpronombre}}</span>
+      </td>
+      <td class="text-center">
+        <p>{{productos.stock}}</p>
+      </td>
+      <td class="text-center">
+        <div class="btn-group ">
+          <button class="btn btn-color dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style="background: #5CCB4A; color: white;">
+            Opciones
+          </button>
+          <ul class="dropdown-menu btn-color" style="border: none; background: none">
+            <button class=" dropdown-item " data-bs-toggle="modal"
+                    data-bs-target="#editarproducto" (click)="abrirmodaleditar(productos)"
+                    style="background: #00DA9D; color: white;">Editar
+            </button>
+            <button class=" dropdown-item " (click)="delete(productos)"
+                    style="background: #F33501; color: white;">Eliminar
+            </button>
+          </ul>
+        </div>
 
-            </td>
-        </tr>
-        </tbody>
-    </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 
 <!-- Modal -->
 <div class="modal fade" id="agregarproducto" tabindex="-1" aria-labelledby="agregarproducto" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header align-items-center" style="background: #195E4B; color: white">
-                <h1 class="modal-title fs-5">Agregar Producto</h1>
-                <button id="closeM1" type="button" class="btn-close text-bg-light" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-body">
-                    <form class="form-control" #productoForm="ngForm" style="border: none">
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <label for="nombre">Nombre del Producto:</label>
-                                <input placeholder="Digite el nombre del producto" type="text" class="form-control"
-                                       id="nombre"
-                                       name="nombre" required minlength="2" maxlength="25"
-                                       style="background: #D9D9D9;border-radius: 0px;"
-                                       [(ngModel)]="productos.nombre" #nombre="ngModel">
-                                <div class="alert alert-danger"
-                                     *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-                                    <div *ngIf="nombre?.errors?.['required']">
-                                        Digite el nombre del producto por favor
-                                    </div>
-                                    <div *ngIf="nombre?.errors?.['minlength']">
-                                        El nombre debe tener mínimo 2 caracteres
-                                    </div>
-                                    <div *ngIf="nombre?.errors?.['maxlength']">
-                                        El nombre debe tener máximo 25 caracteres
-                                    </div>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header align-items-center" style="background: #195E4B; color: white">
+        <h1 class="modal-title fs-5">Agregar Producto</h1>
+        <button id="closeM1" type="button" class="btn-close text-bg-light" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <form class="form-control" #productoForm="ngForm" style="border: none">
+            <div class="row g-3">
+              <div class="col-sm">
+                <label for="nombre">Nombre del Producto:</label>
+                <input placeholder="Digite el nombre del producto" type="text" class="form-control"
+                       id="nombre"
+                       name="nombre" required minlength="5" maxlength="70"
+                       style="background: #D9D9D9;border-radius: 0px;"
+                       [(ngModel)]="productos.nombre" #nombre="ngModel">
+                <div class="alert alert-danger"
+                     *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                  <div *ngIf="nombre?.errors?.['required']">
+                    Ingrese el nombre del producto
+                  </div>
+                  <div *ngIf="nombre?.errors?.['minlength']">
+                    El nombre debe tener mínimo 5 caracteres
+                  </div>
+                  <div *ngIf="nombre?.errors?.['maxlength']">
+                    El nombre debe tener máximo 70 caracteres
+                  </div>
 
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <label for="num_lote">N° Lote:</label>
-                                <input type="number" class="form-control" id="num_lote"
-                                       name="num_lote" required minlength="10" maxlength="10"
-                                       style="background: #D9D9D9;border-radius: 0px;"
-                                       [(ngModel)]="productos.num_lote" #num_lote="ngModel">
-                                <div class="alert alert-danger"
-                                     *ngIf="num_lote.invalid && (num_lote.dirty || num_lote.touched)">
-                                    <div *ngIf="num_lote?.errors?.['required']">
-                                        Digite el número de lote por favor
-                                    </div>
-                                    <div *ngIf="num_lote?.errors?.['minlength']">
-                                        El número de lote debe tener 10 caracteres
-                                    </div>
-                                    <div *ngIf="num_lote?.errors?.['maxlength']">
-                                        El número de lote debe tener 25 caracteres
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <label for="precio">Precio:</label>
-                                <input type="number" class="form-control" placeholder="0,00" id="precio" name="precio"
-                                       required maxlength="7" [(ngModel)]="productos.precio" #precio="ngModel"
-                                       style="background: #D9D9D9;border-radius: 0px;">
-                                <div class="alert alert-danger"
-                                     *ngIf="precio.invalid && (precio.dirty || precio.touched)">
-                                    <div *ngIf="precio?.errors?.['required']">
-                                        Digite el precio por favor
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <label for="fecha">Fecha de Vencimiento:</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha"
-                                       style="background: #D9D9D9;border-radius: 10px;"
-                                       [(ngModel)]="productos.fecha_vencimiento">
-                            </div>
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <label for="stock">Stock:</label>
-                                <input type="Number" class="form-control" id="stock" name="stock"
-                                       required [(ngModel)]="productos.stock" #stock="ngModel"
-                                       style="background: #D9D9D9;border-radius: 0px;">
-                                <div class="alert alert-danger" *ngIf="stock.invalid && (stock.dirty || stock.touched)">
-                                    <div *ngIf="stock?.errors?.['required']">
-                                        Digite el número de stock por favor
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <label for="imagen">Link de la imagen:</label>
-                                <input type="url" class="form-control" placeholder="URL" id="imagen" name="imagen"
-                                       required [(ngModel)]="productos.imagen" #imagen="ngModel"
-                                       style="background: #D9D9D9;border-radius: 10px;">
-                                <div class="alert alert-danger"
-                                     *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
-                                    <div *ngIf="imagen?.errors?.['required']">
-                                        Ingrese la Url de la imagen
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <div class="form-grow">
-                                    <label for="catproid" class="form-label">Categoría</label>
-                                    <select [(ngModel)]="productos.catproid" name="catproid" id="catproid"
-                                            class="form-control" required
-                                            style="background: #D9D9D9;border-radius: 15px;">
-
-                                        <option *ngFor="let categorias of categoria"
-                                                [ngValue]="categorias">{{categorias.catpronombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="form-grow">
-                                    <label for="subcatproid" class="form-label">Subcategoría</label>
-                                    <select [(ngModel)]="productos.subcatproid" name="subcatproid" id="subcatproid"
-                                            class="form-control" required
-                                            style="background: #D9D9D9;border-radius: 15px;">
-                                        <option *ngFor="let subcategorias of subcategoria"
-                                                [ngValue]="subcategorias">{{subcategorias.subcatpronombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <div class="form-grow">
-                                    <label for="descripcion">Descripcion del Producto:</label>
-                                    <input type="text" class="form-control"
-                                           id="descripcion" name="descripcion" required minlength="25" maxlength="100"
-                                           [(ngModel)]="productos.descripcion" #descripcion="ngModel"
-                                           style="background: #D9D9D9;border-radius: 0px;">
-                                    <div class="alert alert-danger"
-                                         *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
-                                        <div *ngIf="descripcion?.errors?.['required']">
-                                            Digite la descripción del producto por favor
-                                        </div>
-                                        <div *ngIf="descripcion?.errors?.['minlength']">
-                                            La descripción debe tener mínimo 25 caracteres
-                                        </div>
-                                        <div *ngIf="descripcion?.errors?.['maxlength']">
-                                            La descripción debe tener máximo 100 caracteres
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="form-grow">
-                                    <label for="idemp" class="form-label">Empresa </label>
-                                <select [(ngModel)]="productos.idempresa" name="idemp" id="idemp"
-                                        class="form-control" required
-                                        style="background: #D9D9D9;border-radius: 15px;">
-                
-                                    <option 
-                                            [ngValue]="empresasdatos">{{nombreemp}}
-                                    </option>
-                                </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        <br>
-                        <div class="container text-center">
-                            <div class="row justify-content-center">
-                                <div class="col-4">
-                                    <button class="btn btn-color" type="submit" [disabled]="!productoForm.form.valid"
-                                            (click)="agregarProducto()"
-                                            style="background: #00DA9D; color: white; border: none">Agregar
-                                    </button>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-color" type="button" data-bs-dismiss="modal"
-                                            style="background: #F33501; color: white; border: none">Cancelar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+              </div>
+              <div class="col-sm">
+                <label for="num_lote">N° Lote:</label>
+                <input type="number" class="form-control" id="num_lote"
+                       name="num_lote" required
+                       style="background: #D9D9D9;border-radius: 0px;"
+                       [(ngModel)]="productos.num_lote" #num_lote="ngModel">
+                <div class="alert alert-danger"
+                     *ngIf="num_lote.invalid && (num_lote.dirty || num_lote.touched)">
+                  <div *ngIf="num_lote?.errors?.['required']">
+                    Ingrese el número de lote por favor
+                  </div>
+
+                </div>
+              </div>
+
             </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <label for="precio">Precio:</label>
+                <input type="number" class="form-control" placeholder="0,00" id="precio" name="precio"
+                       required [(ngModel)]="productos.precio" #precio="ngModel"
+                       style="background: #D9D9D9;border-radius: 0px;">
+                <div class="alert alert-danger"
+                     *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+                  <div *ngIf="precio?.errors?.['required']">
+                    Ingrese el precio por favor
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <label for="fecha">Fecha de Vencimiento:</label>
+                <input type="date" class="form-control" id="fecha" name="fecha"
+                       style="background: #D9D9D9;border-radius: 10px;" required #fechaVen="ngModel"
+                       [(ngModel)]="productos.fecha_vencimiento">
+                <div class="alert alert-danger"
+                     *ngIf="fechaVen.invalid && (fechaVen.dirty || fechaVen.touched)">
+                  <div *ngIf="fechaVen?.errors?.['required']">
+                    Ingrese la fecha
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <label for="stock">Stock:</label>
+                <input type="Number" class="form-control" id="stock" name="stock"
+                       required [(ngModel)]="productos.stock" #stock="ngModel"
+                       style="background: #D9D9D9;border-radius: 0px;">
+                <div class="alert alert-danger" *ngIf="stock.invalid && (stock.dirty || stock.touched)">
+                  <div *ngIf="stock?.errors?.['required']">
+                    Ingrese el número de stock por favor
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <label for="imagen">Link de la imagen:</label>
+                <input type="url" class="form-control" placeholder="URL" id="imagen" name="imagen"
+                       required [(ngModel)]="productos.imagen" #imagen="ngModel"
+                       style="background: #D9D9D9;border-radius: 10px;">
+                <div class="alert alert-danger"
+                     *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                  <div *ngIf="imagen?.errors?.['required']">
+                    Ingrese la Url de la imagen
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <div class="form-grow">
+                  <label for="catproid" class="form-label">Categoría</label>
+                  <select [(ngModel)]="productos.catproid" name="catproid" id="catproid"
+                          class="form-control" required #categoriaSe="ngModel"
+                          style="background: #D9D9D9;border-radius: 15px;">
+                    <option *ngFor="let categorias of categoria"
+                            [ngValue]="categorias">{{categorias.catpronombre}}
+                    </option>
+                  </select>
+                  <div class="alert alert-danger"
+                       *ngIf="categoriaSe.invalid && (categoriaSe.dirty || categoriaSe.touched)">
+                    <div *ngIf="categoriaSe?.errors?.['required']">
+                      Escoja la categoria
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-grow">
+                  <label for="subcatproid" class="form-label">Subcategoría</label>
+                  <select [(ngModel)]="productos.subcatproid" name="subcatproid" id="subcatproid"
+                          class="form-control" required #subcategoriaSe="ngModel"
+                          style="background: #D9D9D9;border-radius: 15px;">
+                    <option *ngFor="let subcategorias of subcategoria"
+                            [ngValue]="subcategorias">{{subcategorias.subcatpronombre}}
+                    </option>
+                  </select>
+                  <div class="alert alert-danger"
+                       *ngIf="subcategoriaSe.invalid && (subcategoriaSe.dirty || subcategoriaSe.touched)">
+                    <div *ngIf="subcategoriaSe?.errors?.['required']">
+                      Escoja la subcategoria
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <div class="form-grow">
+                  <label for="descripcion">Descripcion del Producto:</label>
+                  <input type="text" class="form-control"
+                         id="descripcion" name="descripcion" required minlength="25" maxlength="100"
+                         [(ngModel)]="productos.descripcion" #descripcion="ngModel"
+                         style="background: #D9D9D9;border-radius: 0px;">
+                  <div class="alert alert-danger"
+                       *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                    <div *ngIf="descripcion?.errors?.['required']">
+                      Ingrese la descripción del producto
+                    </div>
+                    <div *ngIf="descripcion?.errors?.['minlength']">
+                      La descripción debe tener mínimo 25 caracteres
+                    </div>
+                    <div *ngIf="descripcion?.errors?.['maxlength']">
+                      La descripción debe tener máximo 100 caracteres
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-grow">
+                  <label for="idemp" class="form-label">Empresa </label>
+                  <select [(ngModel)]="productos.idempresa" name="idemp" id="idemp"
+                          class="form-control" required #empresaSe="ngModel"
+                          style="background: #D9D9D9;border-radius: 15px;">
+                    <option
+                      [ngValue]="empresasdatos">{{nombreemp}}
+                    </option>
+                  </select>
+                  <div class="alert alert-danger"
+                       *ngIf="empresaSe.invalid && (empresaSe.dirty || empresaSe.touched)">
+                    <div *ngIf="empresaSe?.errors?.['required']">
+                      Escoja la empresa
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="container text-center">
+              <div class="row justify-content-center">
+                <div class="col-4">
+                  <button class="btn btn-color" type="submit" [disabled]="!productoForm.form.valid"
+                          (click)="agregarProducto()"
+                          style="background: #00DA9D; color: white; border: none">Agregar
+                  </button>
+                </div>
+                <div class="col-4">
+                  <button class="btn btn-color" type="button" data-bs-dismiss="modal"
+                          style="background: #F33501; color: white; border: none">Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Modal Editar -->
 <div class="modal fade" id="editarproducto" tabindex="-1" aria-labelledby="editarproducto" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header align-items-center" style="background: #195E4B; color: white">
-                <h1 class="modal-title fs-5">Editar Producto</h1>
-                <button id="closeM2" type="button" class="btn-close bg-light text-bg-light" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-body">
-                    <form class="form-control" ngNavigateValidate #productoeditForm="ngForm" style="border: none">
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <label for="nombreedit">Nombre del Producto:</label>
-                                <input type="text" class="form-control"
-                                       id="nombreedit" name="nombreedit" required minlength="2" maxlength="25"
-                                       [(ngModel)]="productos.nombre" #nombreedit="ngModel"
-                                       style="background: #D9D9D9;border-radius: 0px;">
-                                <div class="alert alert-danger"
-                                     *ngIf="nombreedit.invalid && (nombreedit.dirty || nombreedit.touched)">
-                                    <div *ngIf="nombreedit?.errors?.['required']">
-                                        Digite el nombre del producto por favor
-                                    </div>
-                                    <div *ngIf="nombreedit?.errors?.['minlength']">
-                                        El nombre debe tener mínimo 2 caracteres
-                                    </div>
-                                    <div *ngIf="nombreedit?.errors?.['maxlength']">
-                                        El nombre debe tener máximo 25 caracteres
-                                    </div>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header align-items-center" style="background: #195E4B; color: white">
+        <h1 class="modal-title fs-5">Editar Producto</h1>
+        <button id="closeM2" type="button" class="btn-close bg-light text-bg-light" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <form class="form-control" ngNavigateValidate #productoeditForm="ngForm" style="border: none">
+            <div class="row g-3">
+              <div class="col-sm">
+                <label for="nombreedit">Nombre del Producto:</label>
+                <input type="text" class="form-control"
+                       id="nombreedit" name="nombreedit" required minlength="5" maxlength="70"
+                       [(ngModel)]="productos.nombre" #nombreedit="ngModel"
+                       style="background: #D9D9D9;border-radius: 0px;">
+                <div class="alert alert-danger"
+                     *ngIf="nombreedit.invalid && (nombreedit.dirty || nombreedit.touched)">
+                  <div *ngIf="nombreedit?.errors?.['required']">
+                    Ingrese el nombre del producto
+                  </div>
+                  <div *ngIf="nombreedit?.errors?.['minlength']">
+                    El nombre debe tener mínimo 5 caracteres
+                  </div>
+                  <div *ngIf="nombreedit?.errors?.['maxlength']">
+                    El nombre debe tener máximo 70 caracteres
+                  </div>
 
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <label for="num_loteedit">N° Lote:</label>
-                                <input type="number" class="form-control" id="num_loteedit"
-                                       name="num_loteedit" required minlength="10" maxlength="10"
-                                       [(ngModel)]="productos.num_lote" #num_loteedit="ngModel"
-                                       style="background: #D9D9D9;border-radius: 0px;">
-                                <div class="alert alert-danger"
-                                     *ngIf="num_loteedit.invalid && (num_loteedit.dirty || num_loteedit.touched)">
-                                    <div *ngIf="num_loteedit?.errors?.['required']">
-                                        Digite el número de lote por favor
-                                    </div>
-                                    <div *ngIf="num_loteedit?.errors?.['minlength']">
-                                        El número de lote debe tener 10 caracteres
-                                    </div>
-                                    <div *ngIf="num_loteedit?.errors?.['maxlength']">
-                                        El número de lote debe tener 25 caracteres
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <label for="precioedit">Precio:</label>
-                                <input type="number" class="form-control" placeholder="0,00" id="precioedit"
-                                       name="precioedit" required maxlength="7" [(ngModel)]="productos.precio"
-                                       #precioedit="ngModel"
-                                       style="background: #D9D9D9;border-radius: 0px;">
-                                <div class="alert alert-danger"
-                                     *ngIf="precioedit.invalid && (precioedit.dirty || precioedit.touched)">
-                                    <div *ngIf="precioedit?.errors?.['required']">
-                                        Digite el precio por favor
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <label for="fechaedit">Fecha de Vencimiento:</label>
-                                <input type="date" class="form-control" id="fechaedit" name="fechaedit"
-                                       [(ngModel)]="productos.fecha_vencimiento"
-                                       style="background: #D9D9D9;border-radius: 10px;">
-                            </div>
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <label for="stockedit">Stock:</label>
-                                <input type="Number" class="form-control" id="stockedit"
-                                       name="stockedit" required [(ngModel)]="productos.stock" #stockedit="ngModel"
-                                       style="background: #D9D9D9;border-radius: 0px;">
-                                <div class="alert alert-danger"
-                                     *ngIf="stockedit.invalid && (stockedit.dirty || stockedit.touched)">
-                                    <div *ngIf="stockedit?.errors?.['required']">
-                                        Digite la categoría por favor
-                                    </div>
-
-                                    <div *ngIf="stockedit?.errors?.['maxlength']">
-                                        La categoría debe tener máximo 7 caracteres
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <label for="imagenedit">Link de la imagen:</label>
-                                <input type="url" class="form-control" placeholder="URL" id="imagenedit"
-                                       name="imagenedit" required [(ngModel)]="productos.imagen" #imagenedit="ngModel"
-                                       style="background: #D9D9D9;border-radius: 10px;">
-                                <div class="alert alert-danger"
-                                     *ngIf="imagenedit.invalid && (imagenedit.dirty || imagenedit.touched)">
-                                    <div *ngIf="imagenedit?.errors?.['required']">
-                                        Ingrese la Url de la imagen
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <div class="form-grow">
-                                    <label for="catproidedit" class="form-label">Categoría</label>
-                                    <select [compareWith]="compararcategoria" [(ngModel)]="productos.catproid"
-                                            name="catproid" id="catproidedit" class="form-control" required
-                                            style="background: #D9D9D9;border-radius: 15px;"
-                                           >
-                                        <option *ngFor="let categorias of categoria"
-                                                [ngValue]="categorias">{{categorias.catpronombre}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="form-grow">
-                                    <label for="subcatproidedit" class="form-label">Subcategoría</label>
-                                    <select [compareWith]="compararsubcategoria" [(ngModel)]="productos.subcatproid"
-                                            name="subcatproid" id="subcatproidedit" class="form-control" required
-                                            style="background: #D9D9D9;border-radius: 15px;">
-                                        <option *ngFor="let subcategorias of subcategoria"
-                                                [ngValue]="subcategorias">{{subcategorias.subcatpronombre}}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-sm">
-                                <div class="form-grow">
-                                    <label for="descripcionedit">Descripcion del Producto:</label>
-                                    <input type="text" class="form-control"
-                                           id="descripcionedit" name="descripcionedit" required minlength="25"
-                                           maxlength="100" [(ngModel)]="productos.descripcion"
-                                           #descripcionedit="ngModel"
-                                           style="background: #D9D9D9;border-radius: 0px;">
-                                    <div class="alert alert-danger"
-                                         *ngIf="descripcionedit.invalid && (descripcionedit.dirty || descripcionedit.touched)">
-                                        <div *ngIf="descripcionedit?.errors?.['required']">
-                                            Digite la descripción del producto por favor
-                                        </div>
-                                        <div *ngIf="descripcionedit?.errors?.['minlength']">
-                                            La descripción debe tener mínimo 25 caracteres
-                                        </div>
-                                        <div *ngIf="descripcionedit?.errors?.['maxlength']">
-                                            La descripción debe tener máximo 100 caracteres
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="container text-center">
-                            <div class="row justify-content-center">
-                                <div class="col-4">
-                                    <button class="btn btn-color" type="submit"
-                                            [disabled]="!productoeditForm.form.valid"
-                                            (click)="actualizarProducto()"
-                                            style="background: #00DA9D; color: white">Editar
-                                    </button>
-                                </div>
-                                <div class="col-5">
-                                    <button class="btn btn-color" type="button" data-bs-dismiss="modal"
-                                            style="background: #F33501; color: white">Cancelar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+              </div>
+              <div class="col-sm">
+                <label for="num_loteedit">N° Lote:</label>
+                <input type="number" class="form-control" id="num_loteedit"
+                       name="num_loteedit" required
+                       [(ngModel)]="productos.num_lote" #num_loteedit="ngModel"
+                       style="background: #D9D9D9;border-radius: 0px;">
+                <div class="alert alert-danger"
+                     *ngIf="num_loteedit.invalid && (num_loteedit.dirty || num_loteedit.touched)">
+                  <div *ngIf="num_loteedit?.errors?.['required']">
+                    Ingrese el número de lote
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <label for="precioedit">Precio:</label>
+                <input type="number" class="form-control" placeholder="0,00" id="precioedit"
+                       name="precioedit" required [(ngModel)]="productos.precio"
+                       #precioedit="ngModel"
+                       style="background: #D9D9D9;border-radius: 0px;">
+                <div class="alert alert-danger"
+                     *ngIf="precioedit.invalid && (precioedit.dirty || precioedit.touched)">
+                  <div *ngIf="precioedit?.errors?.['required']">
+                    Ingrese el precio
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <label for="fechaedit">Fecha de Vencimiento:</label>
+                <input type="date" class="form-control" id="fechaedit" name="fechaedit"
+                       [(ngModel)]="productos.fecha_vencimiento" #fechavenSEdit="ngModel"
+                       style="background: #D9D9D9;border-radius: 10px;">
+                <div class="alert alert-danger"
+                     *ngIf="fechavenSEdit.invalid && (fechavenSEdit.dirty || fechavenSEdit.touched)">
+                  <div *ngIf="fechavenSEdit?.errors?.['required']">
+                    Ingrese la fecha
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <label for="stockedit">Stock:</label>
+                <input type="Number" class="form-control" id="stockedit"
+                       name="stockedit" required [(ngModel)]="productos.stock" #stockedit="ngModel"
+                       style="background: #D9D9D9;border-radius: 0px;">
+                <div class="alert alert-danger"
+                     *ngIf="stockedit.invalid && (stockedit.dirty || stockedit.touched)">
+                  <div *ngIf="stockedit?.errors?.['required']">
+                    Ingrese el stock
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <label for="imagenedit">Link de la imagen:</label>
+                <input type="url" class="form-control" placeholder="URL" id="imagenedit"
+                       name="imagenedit" required [(ngModel)]="productos.imagen" #imagenedit="ngModel"
+                       style="background: #D9D9D9;border-radius: 10px;">
+                <div class="alert alert-danger"
+                     *ngIf="imagenedit.invalid && (imagenedit.dirty || imagenedit.touched)">
+                  <div *ngIf="imagenedit?.errors?.['required']">
+                    Ingrese la Url de la imagen
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <div class="form-grow">
+                  <label for="catproidedit" class="form-label">Categoría</label>
+                  <select [compareWith]="compararcategoria" [(ngModel)]="productos.catproid"
+                          name="catproid" id="catproidedit" class="form-control" required
+                          style="background: #D9D9D9;border-radius: 15px;" #categoriaEdit="ngModel"
+                  >
+                    <option *ngFor="let categorias of categoria"
+                            [ngValue]="categorias">{{categorias.catpronombre}}</option>
+                  </select>
+                  <div class="alert alert-danger"
+                       *ngIf="categoriaEdit.invalid && (categoriaEdit.dirty || categoriaEdit.touched)">
+                    <div *ngIf="categoriaEdit?.errors?.['required']">
+                      Ingrese la categoria
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="form-grow">
+                  <label for="subcatproidedit" class="form-label">Subcategoría</label>
+                  <select [compareWith]="compararsubcategoria" [(ngModel)]="productos.subcatproid"
+                          name="subcatproid" id="subcatproidedit" class="form-control" required
+                          style="background: #D9D9D9;border-radius: 15px;" #subcatEdit="ngModel">
+                    <option *ngFor="let subcategorias of subcategoria"
+                            [ngValue]="subcategorias">{{subcategorias.subcatpronombre}}</option>
+                  </select>
+                  <div class="alert alert-danger"
+                       *ngIf="subcatEdit.invalid && (subcatEdit.dirty || subcatEdit.touched)">
+                    <div *ngIf="subcatEdit?.errors?.['required']">
+                      Ingrese la subcategoria
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-sm">
+                <div class="form-grow">
+                  <label for="descripcionedit">Descripcion del Producto:</label>
+                  <input type="text" class="form-control"
+                         id="descripcionedit" name="descripcionedit" required minlength="25"
+                         maxlength="100" [(ngModel)]="productos.descripcion"
+                         #descripcionedit="ngModel"
+                         style="background: #D9D9D9;border-radius: 0px;">
+                  <div class="alert alert-danger"
+                       *ngIf="descripcionedit.invalid && (descripcionedit.dirty || descripcionedit.touched)">
+                    <div *ngIf="descripcionedit?.errors?.['required']">
+                      Ingrese la descripción del producto
+                    </div>
+                    <div *ngIf="descripcionedit?.errors?.['minlength']">
+                      La descripción debe tener mínimo 25 caracteres
+                    </div>
+                    <div *ngIf="descripcionedit?.errors?.['maxlength']">
+                      La descripción debe tener máximo 100 caracteres
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="container text-center">
+              <div class="row justify-content-center">
+                <div class="col-4">
+                  <button class="btn btn-color" type="submit"
+                          [disabled]="!productoeditForm.form.valid"
+                          (click)="actualizarProducto()"
+                          style="background: #00DA9D; color: white">Editar
+                  </button>
+                </div>
+                <div class="col-5">
+                  <button class="btn btn-color" type="button" data-bs-dismiss="modal"
+                          style="background: #F33501; color: white">Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>

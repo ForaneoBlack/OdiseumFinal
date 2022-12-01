@@ -82,6 +82,7 @@ export class DetallescategoriaempresaComponent implements OnInit {
 
   abrirmodaleditar(subcategoria: Subcategoriaempresa) {
     this.subcategorias = {...subcategoria};
+    this.categorias = this.subcategorias.idcatemp;
 
   }
 

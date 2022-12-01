@@ -19,9 +19,9 @@
 
         <thead style="background: #195E4B; color: white">
         <tr>
-            <th class="text-center">Categoria</th>
-            <th class="text-center">Descripción</th>
-            <th class="text-center">Configuración</th>
+            <th scope="col" class="text-center">Categoria</th>
+            <th scope="col" class="text-center">Descripción</th>
+            <th scope="col" class="text-center">Configuración</th>
         </tr>
         </thead>
         <tbody>
@@ -43,7 +43,7 @@
                         <button class=" dropdown-item " data-bs-toggle="modal" data-bs-target="#editarcat"
                                 (click)="abrirmodaleditar(categorias)" style="background: #00DA9D; color: white;">Editar
                         </button>
-                        
+
                         <button class=" dropdown-item " (click)="delete(categorias)"
                                 style="background: #F33501; color: white;">Eliminar
                         </button>
@@ -74,18 +74,18 @@
                             <label for="nombrecate">Nombre de la Categoría:</label>
                             <input type="text" class="form-control"
                                    style="background: #D9D9D9;border-radius: 0px;"
-                                   id="nombrecate" name="nombrecate" required minlength="3" maxlength="25"
+                                   id="nombrecate" name="nombrecate" required minlength="5" maxlength="20"
                                    [(ngModel)]="categorias.catpronombre" #nombrecate="ngModel">
                             <div class="alert alert-danger"
                                  *ngIf="nombrecate.invalid && (nombrecate.dirty || nombrecate.touched)">
                                 <div *ngIf="nombrecate?.errors?.['required']">
-                                    Digite la categoría por favor
+                                    Ingrese la categoría
                                 </div>
                                 <div *ngIf="nombrecate?.errors?.['minlength']">
-                                    La categoría debe tener mínimo 4 caracteres
+                                    La categoría debe tener mínimo 5 caracteres
                                 </div>
                                 <div *ngIf="nombrecate?.errors?.['maxlength']">
-                                    La categoría debe tener máximo 25 caracteres
+                                    La categoría debe tener máximo 20 caracteres
                                 </div>
 
                             </div>
@@ -102,7 +102,7 @@
                             <div class="alert alert-danger"
                                  *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
                                 <div *ngIf="descripcion?.errors?.['required']">
-                                    Digite la descripcion por favor
+                                    Ingrese la descripcion
                                 </div>
                                 <div *ngIf="descripcion?.errors?.['minlength']">
                                     La descripción debe tener mínimo 25 caracteres
@@ -157,18 +157,18 @@
                             <label for="nombrecateedit">Nombre de la Categoría:</label>
                             <input type="text" class="form-control"
                                    style="background: #D9D9D9;border-radius: 0px;"
-                                   id="nombrecateedit" name="nombrecateedit" required minlength="3" maxlength="25"
+                                   id="nombrecateedit" name="nombrecateedit" required minlength="5" maxlength="20"
                                    [(ngModel)]="categorias.catpronombre" #nombrecateedit="ngModel">
                             <div class="alert alert-danger"
                                  *ngIf="nombrecateedit.invalid && (nombrecateedit.dirty || nombrecateedit.touched)">
                                 <div *ngIf="nombrecateedit?.errors?.['required']">
-                                    Digite la categoría por favor
+                                    Ingrese la categoría
                                 </div>
                                 <div *ngIf="nombrecateedit?.errors?.['minlength']">
-                                    La categoría debe tener mínimo 4 caracteres
+                                    La categoría debe tener mínimo 5 caracteres
                                 </div>
                                 <div *ngIf="nombrecateedit?.errors?.['maxlength']">
-                                    La categoría debe tener máximo 25 caracteres
+                                    La categoría debe tener máximo 20 caracteres
                                 </div>
 
                             </div>
@@ -189,7 +189,7 @@
                             <div class="alert alert-danger"
                                  *ngIf="descripcionedit.invalid && (descripcionedit.dirty || descripcionedit.touched)">
                                 <div *ngIf="descripcionedit?.errors?.['required']">
-                                    Digite la categoría por favor
+                                    Ingrese la descripcion por favor
                                 </div>
                                 <div *ngIf="descripcionedit?.errors?.['minlength']">
                                     La descripción debe tener mínimo 25 caracteres
@@ -209,7 +209,7 @@
                             <div class="col-4">
                                 <button class="btn btn-color" type="button" (click)="actualizarCategoria()"
                                         [disabled]="!categoriaeditForm.form.valid"
-                                        style="background: #00DA9D; color: white">Agregar
+                                        style="background: #00DA9D; color: white">Editar
                                 </button>
                             </div>
                             <div class="col-4">

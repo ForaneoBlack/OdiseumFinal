@@ -1,108 +1,106 @@
 <div class="container-fluid text-black mt-5 text-center">
-    <h2>
-        INGRESO SOLICITUD DE REGISTRO
-    </h2>
+  <h2>
+    INGRESO SOLICITUD DE REGISTRO
+  </h2>
 </div>
 
 <div class="container">
+  <br>
+  <form class="form-control" #datosSolicitud="ngForm" style="border-radius: 25px; border-color: #195E4B">
     <br>
-    <form class="form-control" #datosSolicitud="ngForm" style="border-radius: 25px; border-color: #195E4B">
-        <br>
-        <div class="row g-3">
-            <div class="col-sm">
-                <div class="form-grow">
-                    <label for="usu_id" class="form-label">Usuario </label>
-                    <select [(ngModel)]="solicitudes.usu_id" name="usu_id" id="usu_id"
-                            class="form-control" required #idusuario="ngModel"
-                            style="background: #D9D9D9;border-radius: 15px;">
-    
-                        <option 
-                                [ngValue]="usuarios">{{nombre}}
-                        </option>
-                    </select>
-                    <div class="alert alert-danger" *ngIf="idusuario.invalid && (idusuario.dirty || idusuario.touched)">
-                        <div *ngIf="idusuario?.errors?.['required']">
-                            Ingrese la empresa a asignar en la solicitud por favor
-                        </div>
-                    </div>
-                </div>
-
+    <div class="row g-3">
+      <div class="col-sm">
+        <div class="form-grow">
+          <label for="usu_id" class="form-label">Usuario </label>
+          <select [(ngModel)]="solicitudes.usu_id" name="usu_id" id="usu_id"
+                  class="form-control" required #idusuario="ngModel"
+                  style="background: #D9D9D9;border-radius: 15px;">
+            <option
+              [ngValue]="usuarios">{{nombre}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="idusuario.invalid && (idusuario.dirty || idusuario.touched)">
+            <div *ngIf="idusuario?.errors?.['required']">
+              Seleccione el usuario
             </div>
-            <br>
-            <div class="col-sm">
-                <div class="form-grow">
-                    <label for="idemp" class="form-label">Empresa </label>
-                    <select [(ngModel)]="solicitudes.idempresa" name="idemp" id="idemp"
-                            class="form-control" required
-                            style="background: #D9D9D9;border-radius: 15px;">
-    
-                        <option 
-                                [ngValue]="empresasdatos">{{nombreemp}}
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <br>
-            <div class="col-sm">
-                <label for="fecha" class="form-label">Fecha Solicitud:</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" required
-                    [(ngModel)]="solicitudes.sol_fecharegistro" #fecha="ngModel"
-                       style="background: #D9D9D9;border-radius: 10px;">
-                <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
-                    <div *ngIf="fecha?.errors?.['required']">
-                        Ingrese la fecha por favor
-                    </div>
-                </div>
-
-            </div>
-            <br>
-            <div class="col-sm">
-                <label for="sol_estado" class="form-label">Estado:</label>
-                <select [(ngModel)]="solicitudes.sol_estado" name="sol_estado" required id="sol_estado"
-                        style="background: #D9D9D9;border-radius: 15px;"
-                        class="form-control" #estado="ngModel">
-
-                    <option>Activo</option>
-                    <option>Pendiente</option>
-                    <option>Rechazado</option>
-
-                </select>
-
-                <div class="alert alert-danger" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
-                    <div *ngIf="estado?.errors?.['required']">
-                        Ingrese el estado por favor
-                    </div>
-                </div>
-
-            </div>
-            <br>
-            <div class="col-sm">
-                <label for="detalle" class="form-label">Detalle Estado:</label>
-                <input type="text" class="form-control" id="detalle" name="detalle" required minlength="3" maxlength="15"
-                    [(ngModel)]="solicitudes.sol_detalleestado" #detalle="ngModel"
-                       style="background: #D9D9D9;border-radius: 15px;">
-                <div class="alert alert-danger" *ngIf="detalle.invalid && (detalle.dirty || detalle.touched)">
-                    <div *ngIf="detalle?.errors?.['required']">
-                        Escriba el detalle por favor
-                    </div>
-                    <div *ngIf="detalle?.errors?.['minlength']">
-                        El detalle debe tener mínimo 3 caracteres
-                    </div>
-                    <div *ngIf="detalle?.errors?.['maxlength']">
-                        El detalle debe tener máximo 15 caracteres
-                    </div>
-
-                </div>
-            </div>
+          </div>
         </div>
-        <br>
-
-        <br>
-        <div class="mx-2 text-center ">
-            <button class="btn btn-color col-md-4" type="submit"
-                [disabled]="!datosSolicitud.form.valid" (click)="agregarSolicitud()"
-                    style="background: #00DA9D; color: white; border: none" routerLink="/dashboard/inicio">Guardar</button>
+      </div>
+      <br>
+      <div class="col-sm">
+        <div class="form-grow">
+          <label for="idemp" class="form-label">Empresa </label>
+          <select [(ngModel)]="solicitudes.idempresa" name="idemp" id="idemp"
+                  class="form-control" required #empre="ngModel"
+                  style="background: #D9D9D9;border-radius: 15px;">
+            <option
+              [ngValue]="empresasdatos">{{nombreemp}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="empre.invalid && (empre.dirty || idusuario.touched)">
+            <div *ngIf="empre?.errors?.['required']">
+              Seleccione la empresa
+            </div>
+          </div>
         </div>
-        <br>
-    </form>
+      </div>
+      <br>
+      <div class="col-sm">
+        <label for="fecha" class="form-label">Fecha Solicitud:</label>
+        <input type="date" class="form-control" id="fecha" name="fecha" required
+               [(ngModel)]="solicitudes.sol_fecharegistro" #fecha="ngModel"
+               style="background: #D9D9D9;border-radius: 10px;">
+        <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+          <div *ngIf="fecha?.errors?.['required']">
+            Ingrese la fecha
+          </div>
+        </div>
+
+      </div>
+      <br>
+      <div class="col-sm">
+        <label for="sol_estado" class="form-label">Estado:</label>
+        <select [(ngModel)]="solicitudes.sol_estado" name="sol_estado" required id="sol_estado"
+                style="background: #D9D9D9;border-radius: 15px;"
+                class="form-control" #estado="ngModel">
+          <option>Activo</option>
+          <option>Pendiente</option>
+          <option>Rechazado</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+          <div *ngIf="estado?.errors?.['required']">
+            Seleccione el estado por favor
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-sm">
+        <label for="detalle" class="form-label">Detalle Estado:</label>
+        <input type="text" class="form-control" id="detalle" name="detalle" required minlength="3" maxlength="15"
+               [(ngModel)]="solicitudes.sol_detalleestado" #detalle="ngModel"
+               style="background: #D9D9D9;border-radius: 15px;">
+        <div class="alert alert-danger" *ngIf="detalle.invalid && (detalle.dirty || detalle.touched)">
+          <div *ngIf="detalle?.errors?.['required']">
+            Ingrese el detalle
+          </div>
+          <div *ngIf="detalle?.errors?.['minlength']">
+            El detalle debe tener mínimo 3 caracteres
+          </div>
+          <div *ngIf="detalle?.errors?.['maxlength']">
+            El detalle debe tener máximo 15 caracteres
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <br>
+    <div class="mx-2 text-center ">
+      <button class="btn btn-color col-md-4" type="submit"
+              [disabled]="!datosSolicitud.form.valid" (click)="agregarSolicitud()"
+              style="background: #00DA9D; color: white; border: none" routerLink="/dashboard/inicio">Guardar
+      </button>
+    </div>
+    <br>
+  </form>
 </div>
