@@ -28,6 +28,7 @@ import { UsuarioguardianGuard } from '../login/usuarioguardian.guard';
 import {RankingempresaComponent} from "./Empresa/rankingempresa/rankingempresa.component";
 import {ReporteproductosComponent} from "./Productos/reporteproductos/reporteproductos.component";
 import {ReporteservicioComponent} from "./Servicio/reporteservicio/reporteservicio.component";
+import { DetalleFacturaComponent } from './detalle-factura/detalle-factura.component';
 
 const routes: Routes = [
     {
@@ -56,6 +57,7 @@ const routes: Routes = [
             {path: 'rankingempresa', component: RankingempresaComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'reporteproducto', component: ReporteproductosComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'reporteservicio', component: ReporteservicioComponent, canActivate:[UsuarioguardianGuard]},
+            {path: 'detallefactura', component: DetalleFacturaComponent, canActivate:[UsuarioguardianGuard]}
 
 
 
