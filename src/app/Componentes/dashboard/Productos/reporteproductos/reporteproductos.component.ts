@@ -28,7 +28,7 @@ export class ReporteproductosComponent implements OnInit {
     this.getProducto();
     this.operacion();
     /*this.getVenta(this.total)*/
-    this.total;
+    this.total = suma(this.producto);
     this.activedRoute.params
       .subscribe(params => {
         let idproducto: number = params['idproducto'];
@@ -64,4 +64,20 @@ export class ReporteproductosComponent implements OnInit {
     this.productoService.getProducto()
     this.total= (this.productos.precio*this.productos.stock);
   }
+}
+function suma(params:Producto[]){
+  let dataprecio= [];
+  let datacantidad=[];
+  let multiplicacion=0;
+  let sumatota=0;
+
+  for (let i =0; i<params.length; i++){
+    dataprecio.push(params[i].precio);
+    datacantidad.push(params[i].stock);
+  }
+  for (let a =0; a<dataprecio.length; a++){
+    multiplicacion = dataprecio[a]*datacantidad[a];
+    sumatota= sumatota+multiplicacion;
+  }
+  return sumatota;
 }
