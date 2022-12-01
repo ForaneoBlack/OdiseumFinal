@@ -7,24 +7,24 @@
     <table class="table mt-3 table-hover table-striped">
         <thead style="background: #195E4B; color: white">
         <tr>
-            <th class="text-center">Código Detalle</th>
-            <th class="text-center">Fecha Facturación</th>
-            <th class="text-center">Detalle</th>
-            <th class="text-center">Cantidad</th>
-            <th class="text-center">Precio</th>
-            <th class="text-center">Acciones</th>
+            <th scope="col" class="text-center">Código Detalle</th>
+            <th scope="col" class="text-center">Fecha Facturación</th>
+            <th scope="col" class="text-center">Detalle</th>
+            <th scope="col" class="text-center">Cantidad</th>
+            <th scope="col" class="text-center">Precio</th>
+            <th scope="col" class="text-center">Acciones</th>
 
         </tr>
         </thead>
 
         <tbody>
         <tr *ngFor="let detalles of detalle" class="text-center">
-            <td>{{detalles.iddetalle}}</td>
-            <td>{{detalles.idfactura.fecha_factura}}</td>
-            <td>{{detalles.idproducto.nombre}}</td><!-- dudas de que mandar servicio o producto? -->
-            <td>{{detalles.cantidad}}</td>
-            <td>{{detalles.precio}}</td>
-            <td>
+            <td class="text-center">{{detalles.iddetalle}}</td>
+            <td class="text-center">{{detalles.idfactura.fecha_factura}}</td>
+            <td class="text-center">{{detalles.idproducto.nombre}}</td><!-- dudas de que mandar servicio o producto? -->
+            <td class="text-center">{{detalles.cantidad}}</td>
+            <td class="text-center">{{detalles.precio}}</td>
+            <td class="text-center">
                 <button class="btn btn-color" type="button" data-bs-toggle="modal" data-bs-target="#detalleFactura"
                         (click)="abrirdetalleFactura(detalles)" style="background: #FFA084; color: white;">Detalles
                 </button>
@@ -62,28 +62,25 @@
 
                         <div>
                             <h5>Más Datos:</h5>
-                        </div> 
+                        </div>
 
                         <table class="table mt-3 table-hover table-striped">
                             <thead style="background: #195E4B; color: white">
                             <tr>
-                                <th class="text-center">Código Detalle</th>
-                                <th class="text-center">Detalle</th>
-                                <th class="text-center">Cantidad</th>
-                                <th class="text-center">Precio</th>
-                                <th class="text-center">N° Lote</th>
-                    
+                                <th scope="col" class="text-center">Código Detalle</th>
+                                <th scope="col" class="text-center">Detalle</th>
+                                <th scope="col" class="text-center">Cantidad</th>
+                                <th scope="col" class="text-center">Precio</th>
+                                <th scope="col" class="text-center">N° Lote</th>
                             </tr>
                             </thead>
-                    
                             <tbody>
                             <tr *ngFor="let detalles of detalle" class="text-center">
-                                <td>{{detalles.iddetalle}}</td>
-                                <td>{{detalles.idproducto.nombre}}</td>
-                                <td>{{detalles.cantidad}}</td>
-                                <td>{{detalles.precio}}</td> 
-                                <td>{{detalles.idproducto.num_lote}}</td>
-                                   
+                                <td class="text-center">{{detalles.iddetalle}}</td>
+                                <td class="text-center">{{detalles.idproducto.nombre}}</td>
+                                <td class="text-center">{{detalles.cantidad}}</td>
+                                <td class="text-center">{{detalles.precio}}</td>
+                                <td class="text-center">{{detalles.idproducto.num_lote}}</td>
                             </tr>
                             </tbody>
                         </table>
