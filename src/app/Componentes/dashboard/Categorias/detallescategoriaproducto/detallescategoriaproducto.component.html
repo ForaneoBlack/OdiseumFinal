@@ -13,8 +13,10 @@
             </div>
             <div class="col-sm">
                 <div class="text-end">
-                    <button type="button" class="btn btn-color" data-bs-toggle="modal"
-                            data-bs-target="#agregarsubcat" (click)="cleanModal()"
+                    <button type="button" class="btn btn-color"
+                            data-bs-toggle="modal"
+                            data-bs-target="#agregarsubcat"
+                            (click)="cleanModal()"
                             style="background: #00DA9D; color: white; border-radius: 20px; width:220px">Agregar
                         Subcategoría
                     </button>
@@ -24,13 +26,13 @@
         </div>
 
         <br>
-        <table class="table text-center table-striped table-hover">
+        <table class="table mt-3 table-striped table-hover">
             <thead style="background: #195E4B; color: white">
             <tr>
-                <th class="text-center">Subcategoria</th>
-                <th class="text-center">Descripción</th>
-                <th class="text-center">Categoría</th>
-                <th class="text-center">Configuración</th>
+                <th scope="col" class="text-center">Subcategoria</th>
+                <th scope="col" class="text-center">Descripción</th>
+                <th scope="col" class="text-center">Categoría</th>
+                <th scope="col" class="text-center">Configuración</th>
             </tr>
             </thead>
             <tbody>
@@ -54,13 +56,15 @@
                         </button>
                         <ul class="dropdown-menu" style="border: none; background: none">
                             <button class=" dropdown-item " data-bs-toggle="modal"
-                                    data-bs-target="#agregarcat" style="background: #00DA9D; color: white;">Editar
+                                    data-bs-target="#editarcat" style="background: #00DA9D; color: white;"
+                                    (click)="abrirmodaleditar(subcategorias)">Editar
                             </button>
-                            <button class=" dropdown-item " data-bs-toggle="modal"
+                            <!--<button class=" dropdown-item " data-bs-toggle="modal"
                                     data-bs-target="#agregarproducto" style="background: #FFA084; color: white;">
                                 Detalles
-                            </button>
-                            <button class=" dropdown-item" style="background: #FF0F0F; color: white;">Eliminar</button>
+                            </button>-->
+                            <button class=" dropdown-item" style="background: #FF0F0F; color: white;"
+                                    (click)="delete(subcategorias)">Eliminar</button>
                         </ul>
                     </div>
                 </td>
@@ -85,19 +89,19 @@
                             <div class="col-sm">
                                 <label for="nombresubcate">Nombre de la Subcategoría:</label>
                                 <input type="text" class="form-control"
-                                       id="nombresubcate" name="nombresubcate" required minlength="3" maxlength="25"
+                                       id="nombresubcate" name="nombresubcate" required minlength="5" maxlength="20"
                                        style="background: #D9D9D9;border-radius: 0px;"
                                        [(ngModel)]="subcategorias.subcatpronombre" #nombresubcate="ngModel">
                                 <div class="alert alert-danger"
                                      *ngIf="nombresubcate.invalid && (nombresubcate.dirty || nombresubcate.touched)">
                                     <div *ngIf="nombresubcate?.errors?.['required']">
-                                        Digite la categoría por favor
+                                        Ingrese la subcategoría
                                     </div>
                                     <div *ngIf="nombresubcate?.errors?.['minlength']">
-                                        La categoría debe tener mínimo 4 caracteres
+                                        La subcategoría debe tener mínimo 5 caracteres
                                     </div>
                                     <div *ngIf="nombresubcate?.errors?.['maxlength']">
-                                        La categoría debe tener máximo 25 caracteres
+                                        La subcategoría debe tener máximo 20 caracteres
                                     </div>
 
                                 </div>
@@ -118,7 +122,7 @@
                                 <div class="alert alert-danger"
                                      *ngIf="subcatdescripcion.invalid && (subcatdescripcion.dirty || subcatdescripcion.touched)">
                                     <div *ngIf="subcatdescripcion?.errors?.['required']">
-                                        Digite la categoría por favor
+                                        Ingrese la descripcion
                                     </div>
                                     <div *ngIf="subcatdescripcion?.errors?.['minlength']">
                                         La descripción debe tener mínimo 25 caracteres
@@ -135,7 +139,7 @@
                             <div class="form-grow">
                                 <label for="catproid" class="form-label">Categoría:</label>
                                 <select [(ngModel)]="subcategorias.catproid" name="catproid" id="catproid"
-                                        class="form-control" #catproid="ngModel"
+                                        class="form-control" #catproid="ngModel" required
                                         style="background: #D9D9D9;border-radius: 15px;">
 
                                     <option *ngFor="let categorias of categoria"
@@ -145,7 +149,7 @@
                                 <div class="alert alert-danger"
                                      *ngIf="catproid.invalid && (catproid.dirty || catproid.touched)">
                                     <div *ngIf="catproid?.errors?.['required']">
-                                        Ingrese la categoría asignar en la subcategoría por favor
+                                        Seleccione la categoría asignar en la subcategoría
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +189,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header align-items-center" style="background: #195E4B; color: white">
-                <h1 class="modal-title">Editar Subcategoria</h1>
+                <h1 class="modal-title fs-3">Editar Subcategoria</h1>
                 <button type="button" id="closeM2" class="btn-close bg-light text-bg-light" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
@@ -193,7 +197,7 @@
                 <form class="form-control" ngNavigateValidate #categoriaeditForm="ngForm" style="border: none">
                     <div class="row g-3">
                         <div class="col-sm">
-                            <label for="nombrecateedit">Nombre de la Categoría:</label>
+                            <label for="nombrecateedit">Nombre de la Subategoría:</label>
                             <input type="text" class="form-control"
                                    style="background: #D9D9D9;border-radius: 0px;"
                                    id="nombrecateedit" name="nombrecateedit" required minlength="3" maxlength="25"
@@ -201,13 +205,13 @@
                             <div class="alert alert-danger"
                                  *ngIf="nombrecateedit.invalid && (nombrecateedit.dirty || nombrecateedit.touched)">
                                 <div *ngIf="nombrecateedit?.errors?.['required']">
-                                    Digite la categoría por favor
+                                    Ingrese la subcategoría
                                 </div>
                                 <div *ngIf="nombrecateedit?.errors?.['minlength']">
-                                    La categoría debe tener mínimo 4 caracteres
+                                    La subcategoría debe tener mínimo 4 caracteres
                                 </div>
                                 <div *ngIf="nombrecateedit?.errors?.['maxlength']">
-                                    La categoría debe tener máximo 25 caracteres
+                                    La subcategoría debe tener máximo 25 caracteres
                                 </div>
 
                             </div>
@@ -219,7 +223,7 @@
                     <div class="row g-3">
 
                         <div class="col-sm">
-                            <label for="descripcionedit">Descripción de la Categoría:</label>
+                            <label for="descripcionedit">Descripción de la Subcategoría:</label>
                             <textarea class="form-control"
                                       id="descripcionedit"
                                       style="background: #D9D9D9;border-radius: 0px;"
@@ -228,7 +232,7 @@
                             <div class="alert alert-danger"
                                  *ngIf="descripcionedit.invalid && (descripcionedit.dirty || descripcionedit.touched)">
                                 <div *ngIf="descripcionedit?.errors?.['required']">
-                                    Digite la categoría por favor
+                                    Ingrese la descripcion
                                 </div>
                                 <div *ngIf="descripcionedit?.errors?.['minlength']">
                                     La descripción debe tener mínimo 25 caracteres
@@ -248,7 +252,7 @@
                             <div class="col-4">
                                 <button class="btn btn-color" type="button" (click)="actualizarCategoria()"
                                         style="background: #00DA9D; color: white; border: none"
-                                        [disabled]="!categoriaeditForm.form.valid">Agregar
+                                        [disabled]="!categoriaeditForm.form.valid">Editar
                                 </button>
                             </div>
                             <div class="col-4">
@@ -269,10 +273,10 @@
 <!-- <div class="container">
     <br>
     <h2 class="text-center" >{{categorias.catpronombre}}</h2>
-    <br>    
-    <p class="lh-sm"><b>Descripcion: </b>{{categorias.catprodescripcion}}</p>       
-    
-    
+    <br>
+    <p class="lh-sm"><b>Descripcion: </b>{{categorias.catprodescripcion}}</p>
+
+
     <br>
     <h2 class="text-center">Subcategorías</h2>
     <br>
@@ -283,7 +287,7 @@
                 <div class="text-start">
                     <button type="button" class="btn btn-secondary" aria-current="page" routerLink="/dashboard/categoriaproductos">Regresar</button>
                 </div>
-               
+
             </div>
             <div class="col-sm">
                 <div class="text-end">
@@ -293,7 +297,7 @@
             </div>
 
         </div>
-        
+
         <br>
         <table class="table table-hover">
 

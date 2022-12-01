@@ -64,6 +64,7 @@ export class DetallescategoriaproductoComponent implements OnInit {
   }
 
   cleanModal(){
+    this.categorias = new CategoriaProducto();
     this.subcategorias = new subcategoriaProducto();
   }
 
@@ -84,13 +85,14 @@ export class DetallescategoriaproductoComponent implements OnInit {
 
   abrirmodaleditar(subcategoria: subcategoriaProducto) {
     this.subcategorias = {...subcategoria};
+    this.categorias = this.subcategorias.catproid;
 
   }
 
   public delete(subcategoria: subcategoriaProducto): void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
+        confirmButton: 'btn btn-success mx-3',
         cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
@@ -98,7 +100,7 @@ export class DetallescategoriaproductoComponent implements OnInit {
 
     swalWithBootstrapButtons.fire({
       title: 'Esta seguro de eliminar!',
-      text: `la categoria : ${subcategoria.subcatpronombre}`,
+      text: `La subcategoria : ${subcategoria.subcatpronombre}`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Eliminar',
@@ -112,7 +114,7 @@ export class DetallescategoriaproductoComponent implements OnInit {
           this.subcategoria = this.subcategoria.filter(del => del.subcatproid != subcategoria.subcatproid)
           swalWithBootstrapButtons.fire(
             'Eliminado!',
-            `Categoría eliminada ${subcategoria.subcatproid}`,
+            `Subategoría eliminada ${subcategoria.subcatproid}`,
             'success'
           );
 

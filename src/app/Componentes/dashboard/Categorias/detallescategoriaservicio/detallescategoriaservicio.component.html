@@ -25,14 +25,14 @@
         </div>
 
         <br>
-        <table class="table text-center table-striped table-hover">
+        <table class="table mt-3 table-striped table-hover">
 
             <thead style="background: #195E4B; color: white">
                 <tr>
-                    <th class="text-center">Subcategoria</th>
-                    <th class="text-center">Descripción</th>
-                    <th class="text-center">Categoria</th>
-                    <th class="text-center">Configuración</th>
+                    <th scope="col" class="text-center">Subcategoria</th>
+                    <th scope="col" class="text-center">Descripción</th>
+                    <th scope="col" class="text-center">Categoria</th>
+                    <th scope="col" class="text-center">Configuración</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,14 +59,14 @@
                             <ul class="dropdown-menu " style="border: none; background: none">
 
                                 <button class=" dropdown-item " data-bs-toggle="modal" data-bs-target="#editarcat"
-                                    style="background: #00DA9D; color: white;">Editar
+                                    style="background: #00DA9D; color: white;" (click)="abrirmodaleditar(subcategorias)">Editar
                                 </button>
                                 <!--<button class=" dropdown-item " data-bs-toggle="modal"
                                     data-bs-target="#agregarproducto" style="background: #FFA084; color: white;">
                                 Detalles
                             </button>-->
                                 <button class=" dropdown-item"
-                                    style="background: #FF0F0F; color: white;">Eliminar</button>
+                                    style="background: #FF0F0F; color: white;" (click)="delete(subcategorias)">Eliminar</button>
                             </ul>
                         </div>
                     </td>
@@ -90,15 +90,15 @@
                             <div class="col-sm">
                                 <label for="nombresubcate">Nombre de la Subcategoría:</label>
                                 <input type="text" class="form-control" style="background: #D9D9D9;border-radius: 0px;"
-                                    id="nombresubcate" name="nombresubcate" required minlength="2" maxlength="70"
+                                    id="nombresubcate" name="nombresubcate" required minlength="5" maxlength="70"
                                     [(ngModel)]="subcatServicio.subcatnombre" #nombresubcate="ngModel">
                                 <div class="alert alert-danger"
                                     *ngIf="nombresubcate.invalid && (nombresubcate.dirty || nombresubcate.touched)">
                                     <div *ngIf="nombresubcate?.errors?.['required']">
-                                        Digite el nombre de la subcategoría por favor
+                                        Ingrese el nombre de la subcategoría
                                     </div>
                                     <div *ngIf="nombresubcate?.errors?.['minlength']">
-                                        El nombre debe tener mínimo 2 caracteres
+                                        El nombre debe tener mínimo 5 caracteres
                                     </div>
                                     <div *ngIf="nombresubcate?.errors?.['maxlength']">
                                         El nombre debe tener máximo 70 caracteres
@@ -118,13 +118,13 @@
                                 <div class="alert alert-danger"
                                     *ngIf="subcatdetalle.invalid && (subcatdetalle.dirty || subcatdetalle.touched)">
                                     <div *ngIf="subcatdetalle?.errors?.['required']">
-                                        Digite el detalle de la subcategoria
+                                        Ingrese la descripcion de la subcategoria
                                     </div>
                                     <div *ngIf="subcatdetalle?.errors?.['minlength']">
-                                        El detalle debe tener mínimo 25 caracteres
+                                        La descripcion debe tener mínimo 25 caracteres
                                     </div>
                                     <div *ngIf="subcatdetalle?.errors?.['maxlength']">
-                                        El detalle debe tener máximo 70 caracteres
+                                        La descripcion debe tener máximo 70 caracteres
                                     </div>
 
                                 </div>
@@ -134,11 +134,18 @@
                             <div class="form-grow">
                                 <label for="idcatemp" class="form-label">Categoría</label>
                                 <select [(ngModel)]="subcatServicio.idcatser" name="idcatemp" id="idcatemp"
-                                    style="background: #D9D9D9;border-radius: 15px;" class="form-control">
+                                    style="background: #D9D9D9;border-radius: 15px;" class="form-control" required
+                                        #catSer="ngModel">
                                     <option *ngFor="let categorias of catServicios" [ngValue]="categorias">
                                         {{categorias.catnombre}}</option>
-
                                 </select>
+                              <div class="alert alert-danger"
+                                   *ngIf="catSer.invalid && (catSer.dirty || catSer.touched)">
+                                <div *ngIf="catSer?.errors?.['required']">
+                                  Seleccione la categoria de la subcategoria
+                                </div>
+
+                              </div>
                             </div>
                         </div>
                         <br>
@@ -183,7 +190,7 @@
                 <form class="form-control" ngNavigateValidate #categoriaeditForm="ngForm" style="border: none">
                     <div class="row g-3">
                         <div class="col-sm">
-                            <label for="nombrecateedit">Nombre de la Categoría:</label>
+                            <label for="nombrecateedit">Nombre de la Subcategoría:</label>
                             <input type="text" class="form-control" style="background: #D9D9D9;border-radius: 0px;"
                                 id="nombrecateedit" name="nombrecateedit" required minlength="2" maxlength="70"
                                 [(ngModel)]="catServicio.catnombre" #nombrecateedit="ngModel">
@@ -216,13 +223,13 @@
                             <div class="alert alert-danger"
                                 *ngIf="descripcionedit.invalid && (descripcionedit.dirty || descripcionedit.touched)">
                                 <div *ngIf="descripcionedit?.errors?.['required']">
-                                    Digite el detalle de la subcategoria
+                                    Ingrese la descripcion de la subcategoria
                                 </div>
                                 <div *ngIf="descripcionedit?.errors?.['minlength']">
-                                    El detalle debe tener mínimo 25 caracteres
+                                  La descripcion debe tener mínimo 25 caracteres
                                 </div>
                                 <div *ngIf="descripcionedit?.errors?.['maxlength']">
-                                    El detalle debe tener máximo 70 caracteres
+                                  La descripcion debe tener máximo 70 caracteres
                                 </div>
 
                             </div>
@@ -236,7 +243,7 @@
                             <div class="col-4">
                                 <button class="btn btn-color" type="button" (click)="actualizarCategoria()"
                                     [disabled]="!categoriaeditForm.form.valid"
-                                    style="background: #00DA9D; color: white; border: none">Agregar
+                                    style="background: #00DA9D; color: white; border: none">Editar
                                 </button>
                             </div>
                             <div class="col-4">

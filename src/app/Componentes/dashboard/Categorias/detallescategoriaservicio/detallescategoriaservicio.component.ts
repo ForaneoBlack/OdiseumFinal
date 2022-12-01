@@ -5,6 +5,8 @@ import {CategoriaservicioService} from "../../../../Service/categoriaservicio.se
 import {ActivatedRoute} from "@angular/router";
 import {Subcategoriaservicio} from "../../../../Models/subcategoriaservicio";
 import {SubcategoriaservicioService} from "../../../../Service/subcategoriaservicio.service";
+import {Usuario} from "../../../../Models/usuario";
+import Swal from "sweetalert2";
 
 @Component({
     selector: 'app-detallescategoriaservicio',
@@ -63,6 +65,7 @@ export class DetallescategoriaservicioComponent implements OnInit {
 
     cleanModal(){
         this.subcatServicio = new Subcategoriaservicio();
+        this.catServicio = new Categoriaservicio();
     }
 
     actualizarCategoria() {
@@ -80,7 +83,52 @@ export class DetallescategoriaservicioComponent implements OnInit {
             })
     }
 
+  public delete(subcat: Subcategoriaservicio): void {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success mx-3',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Esta seguro de eliminar!',
+      text: `La subcategoria : ${subcat.idcatser}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      console.log(result)
+      if (result.isConfirmed) {
+        //funcion eliminar
+        this.subCatSer.eliminar(subcat).subscribe(data => {
+          this.subcatServicios = this.subcatServicios.filter(del => del.idcatser != subcat.idcatser)
+          swalWithBootstrapButtons.fire(
+            'Eliminado!',
+            `La subcategoria eliminado ${subcat.idcatser}`,
+            'success'
+          );
+
+        })
+
+
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          ' ',
+          'error'
+        )
+      }
+    })
+  }
     abrirmodaleditar(subcatser: Subcategoriaservicio) {
         this.subcatServicio = {...subcatser};
+        this.catServicio = this.subcatServicio.idcatser;
     }
 }

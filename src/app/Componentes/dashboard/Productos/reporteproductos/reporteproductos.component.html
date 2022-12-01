@@ -24,29 +24,29 @@
     <table class="table mt-3 table-hover table-striped">
         <thead style="background: #195E4B; color: white">
             <tr>
-                <th class="text-center">Producto</th>
-                <th class="text-center">Imagen</th>
-                <th class="text-center">Cantidad</th>
-                <th class="text-center">Precio total</th>
+                <th scope="col" class="text-center">Producto</th>
+                <th scope="col" class="text-center">Imagen</th>
+                <th scope="col" class="text-center">Cantidad</th>
+                <th scope="col" class="text-center">Precio total</th>
             </tr>
         </thead>
 
         <tbody>
             <tr *ngFor="let productos of producto" class="text-center">
-                <td>{{productos.nombre}}</td>
-                <td class="img-fluid">
+                <td class="text-center">{{productos.nombre}}</td>
+                <td class="img-fluid align-content-center">
                     <a href="{{productos.imagen}}" data-fancybox>
                         <img src="{{productos.imagen}}" alt="" class="img-fluid"/></a>
                 </td>
-                <td>{{productos.stock}}</td>
-                <td>{{productos.precio}}</td>
+                <td class="text-center">{{productos.stock}}</td>
+                <td class="text-center">{{productos.precio}}</td>
             </tr>
         </tbody>
 
         <thead style="color: black; background-color: silver;">
             <tr>
-                <th></th>
-                <th></th>
+                <th class="text-center"></th>
+                <th class="text-center"></th>
                 <th class="text-center">Suman:</th>
                 <th class="text-center" >{{total}}</th>
             </tr>
