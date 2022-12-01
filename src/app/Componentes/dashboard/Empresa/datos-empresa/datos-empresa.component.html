@@ -156,17 +156,17 @@
       <div class="col-sm">
         <label for="ingreso">Ingreso anual: </label>
         <input type="text" class="form-control" id="ingreso" placeholder="1000" name="ingreso" required
-               minlength="10" maxlength="10000" [(ngModel)]="empresas.empingresoanual" #ingreso="ngModel"
+               minlength="2" maxlength="6" [(ngModel)]="empresas.empingresoanual" #ingreso="ngModel"
                style="background: #D9D9D9;border-radius: 0px;">
         <div class="alert alert-danger" *ngIf="ingreso.invalid && (ingreso.dirty || ingreso.touched)">
           <div *ngIf="ingreso?.errors?.['required']">
             Ingrese el ingreso anual
           </div>
           <div *ngIf="ingreso?.errors?.['minlength']">
-            El ingreso anual debe tener mínimo 10 caracteres
+            El ingreso anual debe tener mínimo 2 caracteres
           </div>
           <div *ngIf="ingreso?.errors?.['maxlength']">
-            El ingreso anual debe tener máximo 10000 caracteres
+            El ingreso anual debe tener máximo 6 caracteres
           </div>
 
         </div>

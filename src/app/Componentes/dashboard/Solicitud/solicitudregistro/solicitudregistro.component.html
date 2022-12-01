@@ -43,7 +43,7 @@
         <div class="modal-content">
             <div class="modal-header align-items-center" style="background: #195E4B; color: white">
                 <h1 class="modal-title fs-5">DETALLE DE SOLICITUD DE REGISTRO</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button id="closeM2" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form class="form-control" #detalleSolicitud="ngForm">
@@ -126,7 +126,7 @@
                         </div>
                         <div class="col-sm">
                             <label for="estado">Estado:</label>
-                            <input type="text" class="form-control" id="estado" name="estado" disabled
+                            <input type="text" class="form-control" id="estado" name="estado" 
                                    [(ngModel)]="empresas.empestado">
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                     </div>
                     <br>
                     <div class="mx-2 text-center ">
-                        <button class="btn btn-success col-md-4">Aceptar</button>
+                        <button class="btn btn-success col-md-4" (click)="cerrarmodal()">Aceptar</button>
                         <button class="btn btn-danger col-md-4 offset-md-1" type="button"
                                 data-bs-dismiss="modal">Cancelar
                         </button>

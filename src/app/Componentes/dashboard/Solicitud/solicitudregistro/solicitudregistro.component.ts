@@ -94,9 +94,13 @@ export class SolicitudregistroComponent implements OnInit {
            this.solicitud[index] = response;
          }
        });
-        // @ts-ignore
+        
         document.getElementById("closeM2").click();
       })
+  }
+  cerrarmodal(){
+    document.getElementById("closeM2").click();
+
   }
 
   abrirmodalDetalle(solicitud: solicitud) {
