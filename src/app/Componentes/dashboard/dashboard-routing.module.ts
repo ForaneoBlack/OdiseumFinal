@@ -37,7 +37,7 @@ const routes: Routes = [
             {path: 'rol', component: RolComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'listacategoria', component: ListacategoriaempresaComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'detallescategoria', component: DetallescategoriaempresaComponent, canActivate:[UsuarioguardianGuard]},
-            {path: 'detallescategoria/:idcatemp', component: DetallescategoriaempresaComponent, canActivate:[UsuarioguardianGuard]},
+
             {path: 'listaempresa', component: CrudEmpresaComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'formempresa', component: DatosEmpresaComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'listaproductos', component: ListarproductoComponent, canActivate:[UsuarioguardianGuard]},
@@ -47,13 +47,13 @@ const routes: Routes = [
             {path: 'solicitudregistro', component: SolicitudregistroComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'categoriaproductos', component: ListacategoriaproductoComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'detallescategoriaproductos', component: DetallescategoriaproductoComponent, canActivate:[UsuarioguardianGuard]},
-            {path: 'detallescategoriaproductos/:catproid', component: DetallescategoriaproductoComponent, canActivate:[UsuarioguardianGuard]},
+
             {path: 'listacategoriaservicios', component: ListacategoriaservicioComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'detallescategoriaservicio', component: DetallescategoriaservicioComponent, canActivate:[UsuarioguardianGuard]},
-            {path: 'detallescategoriaservicio/:idcatser', component: DetallescategoriaservicioComponent, canActivate:[UsuarioguardianGuard]},
+
             {path: 'formempresa/:usu_id', component: DatosEmpresaComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'categorizarempresas', component: CategorizarempresaComponent, canActivate:[UsuarioguardianGuard]},
-            {path: 'categorizarempresas/:iddetalle', component: CategorizarempresaComponent, canActivate:[UsuarioguardianGuard]},
+
             {path: 'rankingempresa', component: RankingempresaComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'reporteproducto', component: ReporteproductosComponent, canActivate:[UsuarioguardianGuard]},
             {path: 'reporteservicio', component: ReporteservicioComponent, canActivate:[UsuarioguardianGuard]},
