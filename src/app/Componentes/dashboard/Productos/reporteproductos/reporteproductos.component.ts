@@ -17,6 +17,8 @@ export class ReporteproductosComponent implements OnInit {
   empresas: empresa = new empresa();
   empresa: empresa [] = [];
 
+  datas: String[] = [];
+  idempres!: number;
   total!:number;
 
 
@@ -35,6 +37,15 @@ export class ReporteproductosComponent implements OnInit {
             .subscribe(response => this.productos = response)
         }
       })
+
+    this.idempres = 2
+    this.productoService.getreporte(this.idempres).subscribe(
+      response => {
+        console.log(response[0]);
+
+        console.log(this.datas[2]);
+      }
+    )
   }
 
   getProducto() {
