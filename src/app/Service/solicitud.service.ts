@@ -8,7 +8,7 @@ import { solicitud } from '../Models/solicitud';
 })
 export class SolicitudService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/solicitud';
+  url: string = 'http://localhost:8080/api/solicitud';
 
   constructor(private http: HttpClient) { }
 

@@ -11,7 +11,7 @@ export class CategoriaService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
     //url: string ='http://localhost:8080/api/categoriaempresa'
 
-  url: string = 'https://bryantenemea.com/api/categoriaempresa';
+  url: string = 'http://localhost:8080/api/categoriaempresa';
 
   constructor(private http: HttpClient) { }
 

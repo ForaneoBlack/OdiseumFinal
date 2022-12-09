@@ -9,7 +9,7 @@ import {Persona} from "../Models/persona";
 export class PersonaService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
 
-  url: string = 'https://bryantenemea.com/api/persona';
+  url: string = 'http://localhost:8080/api/persona';
 
   constructor(private http: HttpClient) { }
 

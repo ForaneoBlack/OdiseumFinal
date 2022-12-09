@@ -9,7 +9,7 @@ import { Cat_Sub_Emp } from '../Models/cat_sub_emp';
 export class CatSubEmpService {
 
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/cat-sub-emp';
+  url: string = 'http://localhost:8080/api/cat-sub-emp';
 
   constructor(private http: HttpClient) { }
 

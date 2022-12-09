@@ -9,7 +9,7 @@ import { subcategoriaProducto } from '../Models/subcategoriaProducto';
 export class SubcategoriaproductoService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
   //url: string ='http://localhost:8080/api/categoriaproducto'
-  url: string = 'https://bryantenemea.com/api/subcategoriaproducto';
+  url: string = 'http://localhost:8080/api/subcategoriaproducto';
   constructor(private http: HttpClient) { }
 
   getSubcategoria(): Observable<subcategoriaProducto[]> {

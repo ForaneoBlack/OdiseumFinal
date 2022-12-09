@@ -8,7 +8,7 @@ import {Rol} from "../Models/rol";
 })
 export class RolService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/rol';
+  url: string = 'http://localhost:8080/api/rol';
 
   constructor(private http: HttpClient) { }
 

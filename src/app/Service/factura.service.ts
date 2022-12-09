@@ -9,7 +9,7 @@ import { Factura } from '../Models/factura';
 export class FacturaService {
 
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/factura';
+  url: string = 'http://localhost:8080/api/factura';
 
   constructor(private http: HttpClient) { }
 

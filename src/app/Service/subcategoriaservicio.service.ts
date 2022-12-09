@@ -8,7 +8,7 @@ import {Subcategoriaservicio} from "../Models/subcategoriaservicio";
 })
 export class SubcategoriaservicioService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/subcategoriaservicio';
+  url: string = 'http://localhost:8080/api/subcategoriaservicio';
 
   constructor(private http: HttpClient) { }
 

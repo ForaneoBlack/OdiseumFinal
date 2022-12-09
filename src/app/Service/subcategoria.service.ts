@@ -10,7 +10,7 @@ export class SubcategoriaService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
   //url: string ='http://localhost:8080/api/categoriaempresa'
 
-   url: string = 'https://bryantenemea.com/api/subcategoriaempresa';
+   url: string = 'http://localhost:8080/api/subcategoriaempresa';
 
   constructor(private http: HttpClient) { }
 

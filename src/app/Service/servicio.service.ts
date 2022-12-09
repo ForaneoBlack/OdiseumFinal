@@ -10,7 +10,7 @@ export class ServicioService {
 
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
 
-  url: string = 'https://bryantenemea.com/api/servicio';
+  url: string = 'http://localhost:8080/api/servicio';
 
   constructor(private http: HttpClient) { }
 
