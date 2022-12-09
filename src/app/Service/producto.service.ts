@@ -8,7 +8,7 @@ import { Producto } from '../Models/producto';
 })
 export class ProductoService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/prodcuto';
+  url: string = 'http://localhost:8080/api/prodcuto';
   //url: string = 'http://localhost:9898/api/prodcuto';
 
   constructor(private http: HttpClient) { }

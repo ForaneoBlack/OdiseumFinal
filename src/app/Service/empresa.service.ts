@@ -8,7 +8,7 @@ import { empresa } from '../Models/empresa';
 })
 export class EmpresaService {
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/empresa';
+  url: string = 'http://localhost:8080/api/empresa';
 
   constructor(private http: HttpClient) {}
 

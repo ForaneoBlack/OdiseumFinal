@@ -111,7 +111,7 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <label for="cedula" class="form-label">Cédula:</label>
-                                <input type="text" class="form-control" id="cedula" name="cedula" pattern="^((\\+91-?)|0)?[0-9]{10}$"
+                                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" id="cedula" name="cedula" pattern="^((\\+91-?)|0)?[0-9]{10}$"
                                        required minlength="10" maxlength="10" #cedula="ngModel"
                                        style="background: #D9D9D9;border-radius: 0px;" [ngModelOptions]="{standalone: true }"
                                        [(ngModel)]="persona.cedula">
@@ -154,7 +154,7 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <label for="celular" class="form-label">Celular:</label>
-                                <input type="text" class="form-control" id="celular" name="celular"
+                                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" id="celular" name="celular"
                                        pattern="^((\\+91-?)|0)?[0-9]{10}$" [ngModelOptions]="{standalone: true }"
                                        style="background: #D9D9D9;border-radius: 0px;"
                                        required minlength="10" maxlength="10"
@@ -325,7 +325,7 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <label for="cedulaedit" class="form-label">Cédula:</label>
-                                <input type="text" class="form-control" id="cedulaedit" name="cedulaedit"
+                                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" id="cedulaedit" name="cedulaedit"
                                        pattern="^((\\+91-?)|0)?[0-9]{10}$"
                                        required minlength="10" maxlength="10" #cedulaedit="ngModel"
                                        style="background: #D9D9D9;border-radius: 0px;"
@@ -366,7 +366,7 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <label for="celularedit" class="form-label">Celular:</label>
-                                <input type="text" class="form-control" id="celularedit" name="celular"
+                                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" id="celularedit" name="celular"
                                        pattern="^((\\+91-?)|0)?[0-9]{10}$"
                                        style="background: #D9D9D9;border-radius: 0px;"
                                        required minlength="10" maxlength="10"

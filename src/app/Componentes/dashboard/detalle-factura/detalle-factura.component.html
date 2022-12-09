@@ -7,7 +7,7 @@
     <table class="table mt-3 table-hover table-striped">
         <thead style="background: #195E4B; color: white">
         <tr>
-            <th scope="col" class="text-center">Código Detalle</th>
+            <th scope="col" class="text-center">Código Factura</th>
             <th scope="col" class="text-center">Fecha Facturación</th>
             <th scope="col" class="text-center">Detalle</th>
             <th scope="col" class="text-center">Cantidad</th>
@@ -19,7 +19,7 @@
 
         <tbody>
         <tr *ngFor="let detalles of detalle" class="text-center">
-            <td class="text-center">{{detalles.iddetalle}}</td>
+            <td class="text-center">{{facturas.idfactura}}</td>
             <td class="text-center">{{detalles.idfactura.fecha_factura}}</td>
             <td class="text-center">{{detalles.idproducto.nombre}}</td><!-- dudas de que mandar servicio o producto? -->
             <td class="text-center">{{detalles.cantidad}}</td>
@@ -48,10 +48,10 @@
                 <form class="form-control" #detalleform style="border: none">
                     <div class="row g-3">
                         <div class="col-sm">
-                            <label for="numfactura">N° Factura</label>
+                            <label for="numfactura">Detalle N°</label>
                             <input disabled type="text" class="form-control" placeholder="" id="numfactura" name="numfactura"
                                    style="background: #D9D9D9;border-radius: 0px;"
-                                   [(ngModel)]="facturas.idfactura">
+                                   [(ngModel)]="detalles.iddetalle">
                         </div>
                         <div class="col-sm">
                             <label for="fecha">Fecha</label>

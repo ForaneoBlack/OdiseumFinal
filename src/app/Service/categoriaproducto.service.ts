@@ -10,7 +10,7 @@ export class CategoriaproductoService {
 
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
   //url = "http://localhost:8080/api/categoriaproducto";
-  url: string = 'https://bryantenemea.com/api/categoriaproducto';
+  url: string = 'http://localhost:8080/api/categoriaproducto';
   constructor(private http: HttpClient) {}
 
   getCategoria(): Observable<CategoriaProducto[]> {

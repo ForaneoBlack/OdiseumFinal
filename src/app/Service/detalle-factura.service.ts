@@ -9,7 +9,7 @@ import { Detalle_Factura } from '../Models/detalle_factura';
 export class DetalleFacturaService {
 
   private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-  url: string = 'https://bryantenemea.com/api/detalle';
+  url: string = 'http://localhost:8080/api/detalle';
 
   constructor(private http: HttpClient) { }
   getDetalleFactura(): Observable<Detalle_Factura[]> {

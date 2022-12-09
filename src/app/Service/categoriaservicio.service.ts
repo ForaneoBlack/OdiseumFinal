@@ -9,7 +9,7 @@ import {Categoriaservicio} from "../Models/categoriaservicio";
 export class CategoriaservicioService {
 
     private HttpHeaders=new HttpHeaders({'Content-Type':'application/json'})
-    url: string = 'https://bryantenemea.com/api/categoriaservicio';
+    url: string = 'http://localhost:8080/api/categoriaservicio';
 
     constructor(private http: HttpClient) {
     }
