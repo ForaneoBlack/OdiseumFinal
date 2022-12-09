@@ -24,7 +24,7 @@
             <td>{{solicitudes.idempresa.empruc}}</td>
             <td>{{solicitudes.idempresa.empnombre}}</td>
             <td>{{solicitudes.sol_estado}}</td>
-            <td></td>
+            <td>{{solicitudes.idempresa.empobservaciones}}</td>
 
             <td style="text-align: center">
                 <button type="button" class="btn btn-color" data-bs-toggle="modal"
@@ -125,20 +125,32 @@
                                    [(ngModel)]="empresas.empciudad">
                         </div>
                         <div class="col-sm">
-                            <label for="estado">Estado:</label>
-                            <input type="text" class="form-control" id="estado" name="estado" 
-                                   [(ngModel)]="empresas.empestado">
-                        </div>
+                            <label for="empestado">Estado:</label>
+                            <select [(ngModel)]="solicitudes.sol_estado" name="empestado" required id="empestado" class="form-control"
+                                    #estado="ngModel"
+                                    style="background: #D9D9D9;border-radius: 15px;">
+                    
+                              <option>Activo</option>
+                              <option>Pendiente</option>
+                              <option>Rechazado</option>
+                    
+                            </select>
+                            <div class="alert alert-danger" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+                              <div *ngIf="estado?.errors?.['required']">
+                                Escoja el estado
+                              </div>
+                            </div>
+                          </div>
                     </div>
 
                     <br>
                     <div class="col-sm">
                         <label for="observaciones">Observaciones:</label>
-                        <input style="max-height: +20%" type="text" class="form-control" id="observaciones" name="observaciones">
+                        <input style="max-height: +20%" type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="empresas.empobservaciones">
                     </div>
                     <br>
                     <div class="mx-2 text-center ">
-                        <button class="btn btn-success col-md-4" (click)="cerrarmodal()">Aceptar</button>
+                        <button class="btn btn-success col-md-4" (click)="actualizarCatSubEmp()">Aceptar</button>
                         <button class="btn btn-danger col-md-4 offset-md-1" type="button"
                                 data-bs-dismiss="modal">Cancelar
                         </button>
